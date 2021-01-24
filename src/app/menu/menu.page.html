@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title id="title">Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <ion-button expand="block" size="large" routerLink="/camera">
+      <ion-icon slot="start" name="camera-outline"></ion-icon>
+      Câmera
+    </ion-button>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/galeria">
+      <ion-icon slot="start" name="images-outline"></ion-icon>
+      Galeria
+    </ion-button>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/digitar">
+      <ion-icon slot="start" name="create-outline"></ion-icon>
+      Digitar Placa
+    </ion-button>
+  </div>
+</ion-content>
