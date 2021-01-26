@@ -1,20 +1,23 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title id="title">
-      Verificação de Veículos
+      Aplicativo
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <div id="container">
-    <ion-button expand="block" size="large" routerLink="/menu">
-      <ion-icon slot="start" name="enter-outline"></ion-icon>
+    <div id="blank_div">
+    </div>
+
+    <ion-button id="button1" expand="block" size="large" routerLink="/menu">
+      <ion-icon id="icon1" slot="start" name="enter-outline"></ion-icon>
       Entrar
     </ion-button>
 
-    <ion-button id="button" expand="block" size="large" routerLink="/info">
-      <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+    <ion-button id="button2" expand="block" size="large" routerLink="/info">
+      <ion-icon id="icon2" slot="start" name="information-circle-outline"></ion-icon>
       Info
     </ion-button>
   </div>

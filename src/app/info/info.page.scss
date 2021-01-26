@@ -1,6 +1,4 @@
 #container {
-    text-align: center;
-  
     position: absolute;
     left: 0;
     right: 0;
@@ -9,6 +7,8 @@
   
     padding-left: 20px;
     padding-right: 20px;
+
+    text-align: justify;
 }
   
 #button {
@@ -21,4 +21,29 @@
     font-size:x-large;
 
     margin-right: 50px;
+}
+
+#img_cti {
+    height: 100px;
+    width: 200px;
+}
+
+#div_augusto {
+    margin-top: 20px;
+    font-size: larger;
+}
+
+#div_nilceu {
+    margin-top: 20px;
+    font-size: larger;
+}
+
+#mail_icon {
+    color:black;
+    padding-top: 30px;
+}
+
+#text {
+    font-size: larger;
+    text-align: justify;
 }

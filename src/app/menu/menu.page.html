@@ -9,20 +9,62 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-scroll scrollX="true">
   <div id="container">
-    <ion-button expand="block" size="large" routerLink="/camera">
-      <ion-icon slot="start" name="camera-outline"></ion-icon>
+    <div id="div_line">
+      <ion-item-divider id="divider">
+      </ion-item-divider>
+      <ion-label id="text_line">
+        Verificação de Veículos
+      </ion-label>
+    </div>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/camera">
+      <ion-icon id="icon1" slot="start" name="camera-outline"></ion-icon>
       Câmera
     </ion-button>
 
     <ion-button id="button" expand="block" size="large" routerLink="/galeria">
-      <ion-icon slot="start" name="images-outline"></ion-icon>
+      <ion-icon id="icon2" slot="start" name="images-outline"></ion-icon>
       Galeria
     </ion-button>
 
     <ion-button id="button" expand="block" size="large" routerLink="/digitar">
-      <ion-icon slot="start" name="create-outline"></ion-icon>
+      <ion-icon id="icon3" slot="start" name="text-outline"></ion-icon>
       Digitar Placa
     </ion-button>
+
+    <div id="div_line">
+      <ion-item-divider id="divider">
+      </ion-item-divider>
+      <ion-label id="text_line">
+        Manutenção de Veículos
+      </ion-label>
+    </div>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/cadastro">
+      <ion-icon id="icon4" slot="start" name="car-outline"></ion-icon>
+      Cadastrar Veículo
+    </ion-button>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/edicao">
+      <ion-icon id="icon5" slot="start" name="create-outline"></ion-icon>
+      Editar Veículo
+    </ion-button>
+
+    <div id="div_line">
+      <ion-item-divider id="divider">
+      </ion-item-divider>
+      <ion-label id="text_line">
+        Manutenção de Conta
+      </ion-label>
+    </div>
+
+    <ion-button id="button" expand="block" size="large" routerLink="/conta">
+      <ion-icon id="icon6" slot="start" name="person-circle-outline"></ion-icon>
+      Minha Conta
+    </ion-button>
+    <br>
   </div>
+  </ion-scroll>
 </ion-content>
