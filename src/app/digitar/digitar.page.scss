@@ -9,6 +9,8 @@
   
     padding-left: 20px;
     padding-right: 20px;
+
+    margin-top: -140px;
 }
   
 #button {
@@ -16,9 +18,22 @@
 }
 
 #title {
-    font-weight: bold;
-    text-align:center;
     font-size:x-large;
+    color: white;
+}
 
-    margin-right: 50px;
+#icon1 {
+    margin-left: -40px;
+    margin-right: 40px;
+}
+
+#card {
+    color: black;
+    background-color: #3880ff;
+    width: 300px;
+}
+
+#input {
+    font-size: 1.5cm;
+    color: whitesmoke;
 }

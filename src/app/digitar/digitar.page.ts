@@ -9,6 +9,10 @@ export class DigitarPage implements OnInit {
 
   constructor() { }
 
+  verificarVeiculo() {
+    
+  }
+
   ngOnInit() {
   }
 

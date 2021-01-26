@@ -3,13 +3,24 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-
-    <ion-title id="title">Digitar Placa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div id="container">
+    <ion-card id="card">
+      <ion-card-header>
+        <ion-card-title id="title">PLACA DO VEÍCULO:</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-input placeholder="AAA0A00" id="input" maxlenght=7 autocapitalize="on"></ion-input>
+      </ion-card-content>
+    </ion-card>
 
+    <ion-button id="button" expand="block" size="large" (click)="verificarVeiculo()" [disabled]="!ion-input">
+      <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
+      Verificar Veículo
+    </ion-button>
   </div>
 </ion-content>

@@ -19,17 +19,8 @@ const routes: Routes = [
     loadChildren: () => import('./camera/camera.module').then( m => m.CameraPageModule)
   },
   {
-    path: 'galeria',
-    loadChildren: () => import('./galeria/galeria.module').then( m => m.GaleriaPageModule)
-  },
-  {
     path: 'digitar',
     loadChildren: () => import('./digitar/digitar.module').then( m => m.DigitarPageModule)
-  },
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
   },
   {
     path: 'conta',
@@ -42,6 +33,11 @@ const routes: Routes = [
   {
     path: 'cadastro',
     loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
+  },
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
 ];
 
