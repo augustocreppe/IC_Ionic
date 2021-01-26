@@ -29,7 +29,7 @@
 }
 
 #div_augusto {
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: larger;
 }
 
@@ -38,12 +38,34 @@
     font-size: larger;
 }
 
+#icon {
+    padding-top: 0px;
+}
+
 #mail_icon {
     color:black;
-    padding-top: 30px;
 }
 
 #text {
     font-size: larger;
     text-align: justify;
+}
+
+#img_pibic {
+    width: 100px;
+    height: 80px;
+    margin-top: 10px;
+}
+
+#img_cti {
+    width: 100px;
+    height: 80px;
+    margin-top: 0px;
+}
+
+#img_unesp {
+    width: 100px;
+    height: 80px;
+    margin-top: 0px;
+    margin-left: 120px;
 }
