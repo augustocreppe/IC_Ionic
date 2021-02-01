@@ -31,8 +31,8 @@ const routes: Routes = [
     loadChildren: () => import('./edicao/edicao.module').then( m => m.EdicaoPageModule)
   },
   {
-    path: 'cadastro',
-    loadChildren: () => import('./cadastro/cadastro.module').then( m => m.CadastroPageModule)
+    path: 'cadastro-v',
+    loadChildren: () => import('./cadastro-v/cadastro-v.module').then( m => m.CadastroVPageModule)
   },
   {
     path: '',
