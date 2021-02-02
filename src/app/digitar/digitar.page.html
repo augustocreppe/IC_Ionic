@@ -8,19 +8,49 @@
 
 <ion-content>
   <div id="container">
-    <ion-card id="card">
+  <form [formGroup]="formPlaca" (ngSubmit)="verificarVeiculo()" novalidate>
+    <div id="card">
       <ion-card-header>
-        <ion-card-title id="title">PLACA DO VEÍCULO:</ion-card-title>
+        <ion-card-title id="title">INFORME A PLACA DO VEÍCULO:</ion-card-title>
       </ion-card-header>
     
       <ion-card-content>
-        <ion-input placeholder="AAA0A00" id="input" maxlength="7" autocapitalize="on" [(ngModel)]="InputPlaca"></ion-input>
+        <ion-input 
+          type="text"
+          placeholder="AAA0A00" 
+          id="input" 
+          maxlength="7" 
+          autocapitalize="on" 
+          [(ngModel)]="InputPlaca"
+          formControlName="placa">
+        </ion-input>
       </ion-card-content>
-    </ion-card>
+    </div>
 
-    <ion-button id="button" expand="block" size="large" (click)="verificarVeiculo()" [disabled]="!ion-input">
+    <ion-button 
+      id="button" 
+      type="submit" 
+      expand="block" 
+      size="large" 
+      (click)="verificarVeiculo()">
       <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
       Verificar Veículo
     </ion-button>
+  </form>
+
+  <br><br><br>
+
+  <div id="div_erro">
+    <span class="error ion-padding" *ngIf="isSubmitted && 
+      (errorControl.placa.errors?.minlength || 
+      errorControl.placa.errors?.maxlength || 
+      errorControl.placa.errors?.pattern || 
+      errorControl.placa.errors?.required)">
+      <div id="div_erro_2">
+        Placa inválida!
+      </div>
+    </span>
+  </div>  
+
   </div>
 </ion-content>

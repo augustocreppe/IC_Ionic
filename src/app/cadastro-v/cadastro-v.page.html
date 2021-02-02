@@ -1,9 +1,66 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cadastroV</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div id="container">
+  <a id="title">Cadastro de Veículo</a><br><br>
 
+  <form [formGroup]="formCadV" (ngSubmit)="cadastrarVeiculo()" novalidate>
+    <div id="div_form">
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Placa</ion-label>
+          <ion-input formControlName="placa" type="text" id="text_form"></ion-input>
+        </ion-item>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Marca</ion-label>
+          <ion-input formControlName="marca" type="text" id="text_form"></ion-input>
+        </ion-item>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Modelo</ion-label>
+          <ion-input formControlName="modelo" type="text" id="text_form"></ion-input>
+        </ion-item>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Cor</ion-label>
+          <ion-input formControlName="cor" type="text" id="text_form"></ion-input>
+        </ion-item>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Proprietário</ion-label>
+          <ion-input formControlName="prop" type="text" id="text_form"></ion-input>
+        </ion-item>
+    </div>
+
+    <ion-button 
+      id="button" 
+      type="submit" 
+      expand="block" 
+      size="large" 
+      (click)="cadastrarVeiculo()">
+      <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
+      Cadastrar Veículo
+    </ion-button>
+  </form>
+
+  <br><br><br>
+
+  <div id="div_erro">
+    <span class="error ion-padding" *ngIf="isSubmitted && 
+      (errorControl.placa.errors?.minlength || 
+      errorControl.placa.errors?.maxlength || 
+      errorControl.placa.errors?.pattern || 
+      errorControl.placa.errors?.required)">
+      <div id="div_erro_2">
+        Errado!
+      </div>
+    </span>
+  </div>
+  </div>
 </ion-content>
