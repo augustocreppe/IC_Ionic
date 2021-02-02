@@ -27,12 +27,20 @@ const routes: Routes = [
     loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
   },
   {
-    path: 'edicao',
-    loadChildren: () => import('./edicao/edicao.module').then( m => m.EdicaoPageModule)
+    path: 'cadastro-p',
+    loadChildren: () => import('./cadastro-p/cadastro-p.module').then( m => m.CadastroPPageModule)
   },
   {
     path: 'cadastro-v',
     loadChildren: () => import('./cadastro-v/cadastro-v.module').then( m => m.CadastroVPageModule)
+  },
+  {
+    path: 'edicao-v',
+    loadChildren: () => import('./edicao-v/edicao-v.module').then( m => m.EdicaoVPageModule)
+  },
+  {
+    path: 'edicao-p',
+    loadChildren: () => import('./edicao-p/edicao-p.module').then( m => m.EdicaoPPageModule)
   },
   {
     path: '',

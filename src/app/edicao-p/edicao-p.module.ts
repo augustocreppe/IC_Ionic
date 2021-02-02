@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { EdicaoPageRoutingModule } from './edicao-routing.module';
+import { EdicaoPPageRoutingModule } from './edicao-p-routing.module';
 
-import { EdicaoPage } from './edicao.page';
+import { EdicaoPPage } from './edicao-p.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    EdicaoPageRoutingModule
+    EdicaoPPageRoutingModule
   ],
-  declarations: [EdicaoPage]
+  declarations: [EdicaoPPage]
 })
-export class EdicaoPageModule {}
+export class EdicaoPPageModule {}
