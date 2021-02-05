@@ -30,6 +30,7 @@ export class CadastroVPage implements OnInit {
   cadastrarVeiculo() {
     this.isSubmitted = true;
     if (!this.formCadV.valid) {
+      console.log('Por favor, forneça todos os dados!')
       return false;
     } 
     else {

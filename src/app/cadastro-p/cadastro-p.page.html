@@ -8,52 +8,121 @@
 
 <ion-content>
   <div id="container">
-    <form [formGroup]="formPessoa" (ngSubmit)="submitForm()" novalidate>
+  <a id="title">Cadastro de Pessoa</a><br><br>
 
-      <!--
-      <div id="div_form">
-        Oi
-      </div>
-      -->
+  <form [formGroup]="formCadP" (ngSubmit)="cadastrarPessoa()" novalidate>
+    <div id="div_form">
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Nome</ion-label>
+          <ion-input formControlName="nome" type="text" id="text_form" maxlength="30"></ion-input>
+        </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.nome.errors?.minlength || 
+          errorControl.nome.errors?.maxlength ||
+          errorControl.nome.errors?.required)">
+          <div id="erro_nome">
+            Nome Inválido!
+          </div>
+        </span>
 
-      <ion-item>
-        <ion-label position="floating">Nome</ion-label>
-        <ion-input formControlName="nome" type="text"></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nome.errors?.required">
-        Informe o nome.
-      </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.nome.errors?.minlength">
-        Nome deve conter pelo menos 3 caracteres.
-      </span>
-  
-      <ion-item lines="full">
-        <ion-label position="floating">Email</ion-label>
-        <ion-input formControlName="email" type="email"></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.required">
-        Informe o e-mail.
-      </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.email.errors?.pattern">
-        Informe um e-mail válido.
-      </span>
-  
-      <ion-item lines="full">
-        <ion-label position="floating">Data de Nascimento</ion-label>
-        <ion-datetime (ionChange)="getDate($event)" formControlName="data" [value]="defaultDate"></ion-datetime>
-      </ion-item>
-  
-      <ion-item lines="full">
-        <ion-label position="floating">Telefone</ion-label>
-        <ion-input maxlength="10" formControlName="tel" type="text" required></ion-input>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.tel.errors?.required">
-        Informe o telefone!
-      </span>
-      <span class="error ion-padding" *ngIf="isSubmitted && errorControl.tel.errors?.pattern">
-        Informe somente números!
-      </span>
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Data de Nascimento</ion-label>
+          <ion-datetime (ionChange)="getDate($event)" formControlName="data" [value]="defaultDate"></ion-datetime>
+        </ion-item>
 
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">CPF</ion-label>
+          <ion-input formControlName="cpf" type="text" id="text_form" maxlength="11"></ion-input>
+        </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.cpf.erros?.pattern ||
+          errorControl.cpf.errors?.minlength || 
+          errorControl.cpf.errors?.maxlength ||
+          errorControl.cpf.errors?.required)">
+          <div id="erro_cpf">
+            CPF Inválido!
+          </div>
+        </span>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">CEP</ion-label>
+          <ion-input formControlName="cep" type="text" id="text_form" maxlength="8"></ion-input>
+        </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.cep.erros?.pattern ||
+          errorControl.cep.errors?.minlength || 
+          errorControl.cep.errors?.maxlength ||
+          errorControl.cep.errors?.required)">
+          <div id="erro_cep">
+            CEP Inválido!
+          </div>
+        </span>
+
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">E-mail</ion-label>
+          <ion-input formControlName="email" type="email" id="text_form"></ion-input>
+        </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.email.erros?.pattern ||
+          errorControl.email.errors?.required)">
+          <div id="erro_email">
+            E-mail Inválido!
+          </div>
+        </span>
+        
+        <ion-item id="item" color="transparent">
+          <ion-label position="floating">Telefone</ion-label>
+          <ion-input formControlName="tel" type="text" id="text_form" maxlength="11"></ion-input>
+        </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.tel.erros?.pattern ||
+          errorControl.tel.errors?.minlength || 
+          errorControl.tel.errors?.maxlength ||
+          errorControl.tel.errors?.required)">
+          <div id="erro_tel">
+            Telefone Inválido!
+          </div>
+        </span>
+
+        <ion-item id="item" color="transparent" lines="full">
+          <ion-label position="floating">Tipo</ion-label>
+          <ion-radio-group formControlName="tipo" >
+            <br>
+            <ion-item id="item_r1" color="transparent" lines="none">
+              <ion-radio slot="start" value="morador" id="radio"></ion-radio>
+              <ion-label>Morador</ion-label>
+            </ion-item>
+
+            <ion-item id="item_r2" color="transparent" lines="none">
+              <ion-label>Visitante</ion-label>
+              <ion-radio slot="start" value="visitante" id="radio"></ion-radio>
+            </ion-item>
+    
+            <ion-item id="item_r3" color="transparent" lines="none">
+              <ion-label>Funcionário</ion-label>
+              <ion-radio slot="start" value="funcionário" id="radio"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-item>
+        <span *ngIf="isSubmitted && errorControl.tipo.errors?.required">
+          <div id="erro_tipo">
+            Informe o Tipo!
+          </div>
+        </span>
+    </div>
+
+    <ion-button 
+      id="button" 
+      type="submit" 
+      expand="block" 
+      size="large" 
+      (click)="cadastrarPessoa()">
+      <ion-icon id="icon2" slot="start" name="person-add-outline"></ion-icon>
+      Cadastrar Pessoa
+    </ion-button>
+  </form>
+
+    <!--
       <ion-radio-group lines="full" formControlName="tipo" >
         <ion-list-header>
           <ion-label>Tipo:</ion-label>
@@ -77,12 +146,7 @@
       <span class="error ion-padding" *ngIf="isSubmitted && errorControl.tipo.errors?.required">
         Informe o tipo!
       </span>
-  
-      <ion-row>
-        <ion-col>
-          <ion-button id="button" type="submit" size="large" expand="block">Submit</ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
+    -->
+
   </div>
 </ion-content>

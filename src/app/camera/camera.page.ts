@@ -33,7 +33,7 @@ export class CameraPage implements OnInit {
     await this.worker.load();
     await this.worker.loadLanguage('eng');
     await this.worker.initialize('eng');
-    console.log('FIN');
+    console.log('Fim');
     this.workerReady = true;
   }
 
