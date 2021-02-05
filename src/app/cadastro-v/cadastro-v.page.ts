@@ -6,6 +6,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
   templateUrl: './cadastro-v.page.html',
   styleUrls: ['./cadastro-v.page.scss'],
 })
+
 export class CadastroVPage implements OnInit {
   formCadV: FormGroup;
   isSubmitted = false;
@@ -14,12 +15,11 @@ export class CadastroVPage implements OnInit {
 
   ngOnInit() {
     this.formCadV = this.formBuilder.group({
-      placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z0-9]*$')]],
-      marca: [],
-      modelo: [],
-      cor: [],
-      prop: [],
-
+      placa:  ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z0-9]*$')]],
+      marca:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      modelo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      cor:    ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+      prop:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
     })
   }
 
@@ -28,14 +28,6 @@ export class CadastroVPage implements OnInit {
   }
 
   cadastrarVeiculo() {
-    if(this.isSubmitted &&  (this.errorControl.placa.errors?.minlength || 
-       this.errorControl.placa.errors?.maxlength || 
-       this.errorControl.placa.errors?.pattern || 
-       this.errorControl.placa.errors?.required))
-    {
-      
-    }
-
     this.isSubmitted = true;
     if (!this.formCadV.valid) {
       return false;

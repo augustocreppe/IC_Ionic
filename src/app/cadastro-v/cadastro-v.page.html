@@ -14,28 +14,68 @@
     <div id="div_form">
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Placa</ion-label>
-          <ion-input formControlName="placa" type="text" id="text_form"></ion-input>
+          <ion-input formControlName="placa" type="text" id="text_form" maxlength="7"></ion-input>
         </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.placa.errors?.minlength || 
+          errorControl.placa.errors?.maxlength ||
+          errorControl.placa.errors?.required)">
+          <div id="erro_placa">
+            Placa Inválida!
+          </div>
+        </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Marca</ion-label>
-          <ion-input formControlName="marca" type="text" id="text_form"></ion-input>
+          <ion-input formControlName="marca" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.marca.errors?.minlength || 
+          errorControl.marca.errors?.maxlength ||
+          errorControl.marca.errors?.required)">
+          <div id="erro_marca">
+            Marca Inválida!
+          </div>
+        </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Modelo</ion-label>
-          <ion-input formControlName="modelo" type="text" id="text_form"></ion-input>
+          <ion-input formControlName="modelo" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.modelo.errors?.minlength || 
+          errorControl.modelo.errors?.maxlength ||
+          errorControl.modelo.errors?.required)">
+          <div id="erro_modelo">
+            Modelo Inválido!
+          </div>
+        </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Cor</ion-label>
-          <ion-input formControlName="cor" type="text" id="text_form"></ion-input>
+          <ion-input formControlName="cor" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.cor.errors?.minlength || 
+          errorControl.cor.errors?.maxlength ||
+          errorControl.cor.errors?.required)">
+          <div id="erro_cor">
+            Cor Inválida!
+          </div>
+        </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Proprietário</ion-label>
-          <ion-input formControlName="prop" type="text" id="text_form"></ion-input>
+          <ion-input formControlName="prop" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
+        <span *ngIf="isSubmitted &&
+          (errorControl.prop.errors?.minlength || 
+          errorControl.prop.errors?.maxlength ||
+          errorControl.prop.errors?.required)">
+          <div id="erro_prop">
+            Proprietário Inválido!
+          </div>
+        </span>
     </div>
 
     <ion-button 
@@ -49,18 +89,5 @@
     </ion-button>
   </form>
 
-  <br><br><br>
-
-  <div id="div_erro">
-    <span class="error ion-padding" *ngIf="isSubmitted && 
-      (errorControl.placa.errors?.minlength || 
-      errorControl.placa.errors?.maxlength || 
-      errorControl.placa.errors?.pattern || 
-      errorControl.placa.errors?.required)">
-      <div id="div_erro_2">
-        Errado!
-      </div>
-    </span>
-  </div>
   </div>
 </ion-content>

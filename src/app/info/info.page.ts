@@ -5,11 +5,8 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './info.page.html',
   styleUrls: ['./info.page.scss'],
 })
+
 export class InfoPage implements OnInit {
-
   constructor() { }
-
-  ngOnInit() {
-  }
-
+  ngOnInit() { }
 }
