@@ -8,6 +8,134 @@
 
 <ion-content>
   <div id="container">
+  
+  <a *ngIf="modoPesquisa">
+  <form [formGroup]="formEditV" (ngSubmit)="pesquisarVeiculo()" novalidate>
+    <div id="card">
+      <ion-card-header>
+        <ion-card-title id="title">INFORME A PLACA DO VEÍCULO:</ion-card-title>
+      </ion-card-header>
+    
+      <ion-card-content>
+        <ion-input 
+          type="text"
+          placeholder="AAA0A00" 
+          id="input" 
+          maxlength="7" 
+          autocapitalize="on" 
+          [(ngModel)]="InputPlaca"
+          formControlName="placa">
+        </ion-input>
+      </ion-card-content>
+    </div>
+
+    <ion-button 
+      id="button" 
+      type="submit" 
+      expand="block" 
+      size="large" 
+      (click)="pesquisarVeiculo()">
+      <ion-icon id="icon2" slot="start" name="search-outline"></ion-icon>
+      Pesquisar Veículo
+    </ion-button>
+  </form>
+
+  <br><br><br>
+
+  <div id="div_erro">
+    <span class="error ion-padding" *ngIf="isSubmitted && 
+      (errorControl.placa.errors?.minlength || 
+      errorControl.placa.errors?.maxlength || 
+      errorControl.placa.errors?.pattern || 
+      errorControl.placa.errors?.required)">
+      <div id="div_erro_2">
+        Placa inválida!
+      </div>
+    </span>
+  </div>
+  </a>
+
+  <a *ngIf="modoMostra">
+    <form [formGroup]="formEditV2" (ngSubmit)="alterarVeiculo()" novalidate>
+      <div id="div_form">
+          <ion-item id="item" color="transparent">
+            <ion-label position="floating">Placa</ion-label>
+            <ion-input formControlName="placa" type="text" id="text_form" maxlength="7"></ion-input>
+          </ion-item>
+          <span *ngIf="isSubmitted &&
+            (errorControl2.placa.errors?.pattern  ||
+            errorControl2.placa.errors?.minlength || 
+            errorControl2.placa.errors?.maxlength ||
+            errorControl2.placa.errors?.required)">
+            <div id="erro_placa">
+              Placa Inválida!
+            </div>
+          </span>
+  
+          <ion-item id="item" color="transparent">
+            <ion-label position="floating">Marca</ion-label>
+            <ion-input formControlName="marca" type="text" id="text_form" maxlength="15"></ion-input>
+          </ion-item>
+          <span *ngIf="isSubmitted &&
+            (errorControl2.marca.errors?.minlength || 
+            errorControl2.marca.errors?.maxlength ||
+            errorControl2.marca.errors?.required)">
+            <div id="erro_marca">
+              Marca Inválida!
+            </div>
+          </span>
+  
+          <ion-item id="item" color="transparent">
+            <ion-label position="floating">Modelo</ion-label>
+            <ion-input formControlName="modelo" type="text" id="text_form" maxlength="15"></ion-input>
+          </ion-item>
+          <span *ngIf="isSubmitted &&
+            (errorControl2.modelo.errors?.minlength || 
+            errorControl2.modelo.errors?.maxlength ||
+            errorControl2.modelo.errors?.required)">
+            <div id="erro_modelo">
+              Modelo Inválido!
+            </div>
+          </span>
+  
+          <ion-item id="item" color="transparent">
+            <ion-label position="floating">Cor</ion-label>
+            <ion-input formControlName="cor" type="text" id="text_form" maxlength="15"></ion-input>
+          </ion-item>
+          <span *ngIf="isSubmitted &&
+            (errorControl2.cor.errors?.minlength || 
+            errorControl2.cor.errors?.maxlength ||
+            errorControl2.cor.errors?.required)">
+            <div id="erro_cor">
+              Cor Inválida!
+            </div>
+          </span>
+  
+          <ion-item id="item" color="transparent">
+            <ion-label position="floating">Proprietário</ion-label>
+            <ion-input formControlName="prop" type="text" id="text_form" maxlength="15"></ion-input>
+          </ion-item>
+          <span *ngIf="isSubmitted &&
+            (errorControl2.prop.errors?.minlength || 
+            errorControl2.prop.errors?.maxlength ||
+            errorControl2.prop.errors?.required)">
+            <div id="erro_prop">
+              Proprietário Inválido!
+            </div>
+          </span>
+      </div>
+  
+      <ion-button 
+        id="button2" 
+        type="submit" 
+        expand="block" 
+        size="large" 
+        (click)="alterarVeiculo()">
+        <ion-icon id="icon2" slot="start" name="save-outline"></ion-icon>
+        Alterar Veículo
+      </ion-button>
+    </form>
+  </a>
 
   </div>
 </ion-content>

@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-
 import { EdicaoPPageRoutingModule } from './edicao-p-routing.module';
-
 import { EdicaoPPage } from './edicao-p.page';
 
 @NgModule({
@@ -13,8 +10,10 @@ import { EdicaoPPage } from './edicao-p.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EdicaoPPageRoutingModule
+    EdicaoPPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [EdicaoPPage]
 })
+
 export class EdicaoPPageModule {}

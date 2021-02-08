@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { EdicaoVPageRoutingModule } from './edicao-v-routing.module';
 import { EdicaoVPage } from './edicao-v.page';
@@ -10,7 +10,8 @@ import { EdicaoVPage } from './edicao-v.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    EdicaoVPageRoutingModule
+    EdicaoVPageRoutingModule,
+    ReactiveFormsModule
   ],
   declarations: [EdicaoVPage]
 })

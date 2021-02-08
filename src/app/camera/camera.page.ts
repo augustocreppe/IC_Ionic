@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { createWorker} from 'tesseract.js';
+import { Router } from '@angular/router';
 
 const { Camera } = Plugins;
 
@@ -17,7 +18,7 @@ export class CameraPage implements OnInit {
   ocrResult = '';
   captureProgress = 0;
 
-  constructor() {
+  constructor(private router: Router) { 
     this.loadWorker();
   }
 
@@ -33,7 +34,6 @@ export class CameraPage implements OnInit {
     await this.worker.load();
     await this.worker.loadLanguage('eng');
     await this.worker.initialize('eng');
-    console.log('Fim');
     this.workerReady = true;
   }
 
@@ -61,12 +61,13 @@ export class CameraPage implements OnInit {
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera,
     });
-    console.log('image: ', image);
+
     this.image = image.dataUrl;
+    console.log('image: ', image);
 
     if(this.image == '')
     {
-      //VOLTAR PARA MENU
+      this.router.navigate(['/menu']);
     }
   }
 

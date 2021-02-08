@@ -2,10 +2,7 @@
     text-align: center;
   
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25px;
   
     padding-left: 20px;
     padding-right: 20px;
@@ -15,10 +12,120 @@
     margin-top: 20px;
 }
 
-#title {
-    font-weight: bold;
-    text-align:center;
-    font-size:x-large;
+#button2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-    margin-right: 50px;
+#title {
+    font-size:x-large;
+    color: white;
+}
+
+#icon1 {
+    margin-left: -40px;
+    margin-right: 40px;
+}
+
+#card {
+    color: black;
+    background-color: #3880ff;
+    width: 320px;
+    border-radius: 3%;
+}
+
+#input {
+    font-size: 1.4cm;
+    color: whitesmoke;
+}
+
+#div_erro {
+    height: 10px;
+    width: 180px;
+
+    padding: 0px;
+
+    margin-left: 70px;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#div_erro_2 {
+    color: white;
+    background-color: red;
+    border-radius: 3%;
+}
+
+#div_form {
+    width: 320px;
+    background-color: #3880ff;
+    color: white;
+    border-radius: 2%;
+    padding: 4px;
+    padding-bottom: 20px;
+}
+
+#item {
+    font-size: x-large;
+    color:white;
+}
+
+#text_form {
+    color: whitesmoke;
+}
+
+#erro_placa {
+    display: block;
+    color: #8a0000;
+    font-size: large;
+    background-color: #ff6b6b;
+    width: 130px;
+    border-radius: 4%;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+
+#erro_marca {
+    display: block;
+    color: #8a0000;
+    font-size: large;
+    background-color: #ff6b6b;
+    width: 130px;
+    border-radius: 4%;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+
+#erro_modelo {
+    display: block;
+    color: #8a0000;
+    font-size: large;
+    background-color: #ff6b6b;
+    width: 140px;
+    border-radius: 4%;
+    margin-left: 85px;
+    margin-top: 2px;
+}
+
+#erro_cor {
+    display: block;
+    color: #8a0000;
+    font-size: large;
+    background-color: #ff6b6b;
+    width: 130px;
+    border-radius: 4%;
+    margin-left: 90px;
+    margin-top: 2px;
+}
+
+#erro_prop {
+    display: block;
+    color: #8a0000;
+    font-size: large;
+    background-color: #ff6b6b;
+    width: 170px;
+    border-radius: 4%;
+    margin-left: 70px;
+    margin-top: 2px;
 }

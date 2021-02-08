@@ -15,7 +15,7 @@ export class CadastroVPage implements OnInit {
 
   ngOnInit() {
     this.formCadV = this.formBuilder.group({
-      placa:  ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z0-9]*$')]],
+      placa:  ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
       marca:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       modelo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       cor:    ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],

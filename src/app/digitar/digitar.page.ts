@@ -15,7 +15,10 @@ export class DigitarPage implements OnInit {
 
   ngOnInit() {
     this.formPlaca = this.formBuilder.group({
-      placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z0-9]*$')]],
+      placa: ['', [Validators.required, 
+                  Validators.minLength(7), 
+                  Validators.maxLength(7), 
+                  Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
     })
   }
 
