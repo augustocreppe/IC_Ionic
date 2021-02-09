@@ -25,6 +25,8 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^5.0.0",
     "@ionic/pwa-elements": "^3.0.2",
+    "br-mask": "0.0.10",
+    "ngx-image-cropper": "^3.3.3",
     "rxjs": "~6.5.5",
     "tesseract.js": "^2.0.0-beta.2",
     "tslib": "^2.0.0",
@@ -32,7 +34,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1101.1",
-    "@angular/cli": "10.0.8",
+    "@angular/cli": "^10.2.1",
     "@angular/compiler": "~10.0.0",
     "@angular/compiler-cli": "~10.0.0",
     "@angular/language-service": "~10.0.0",

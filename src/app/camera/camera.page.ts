@@ -74,4 +74,8 @@ export class CameraPage implements OnInit {
     const result = await this.worker.recognize(this.image);
     this.ocrResult = result.data.text;
   }
+
+  //CROPPER -----------------------------------
+
+  
 }

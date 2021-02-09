@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { CadastroPPageRoutingModule } from './cadastro-p-routing.module';
 import { CadastroPPage } from './cadastro-p.page';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { CadastroPPage } from './cadastro-p.page';
     FormsModule,
     IonicModule,
     ReactiveFormsModule,
-    CadastroPPageRoutingModule
+    CadastroPPageRoutingModule,
+    BrMaskerModule
   ],
   declarations: [CadastroPPage]
 })

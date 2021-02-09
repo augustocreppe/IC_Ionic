@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { EdicaoPPageRoutingModule } from './edicao-p-routing.module';
 import { EdicaoPPage } from './edicao-p.page';
+import { BrMaskerModule } from 'br-mask';
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import { EdicaoPPage } from './edicao-p.page';
     FormsModule,
     IonicModule,
     EdicaoPPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrMaskerModule
   ],
   declarations: [EdicaoPPage]
 })

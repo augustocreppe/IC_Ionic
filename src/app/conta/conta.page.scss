@@ -2,11 +2,8 @@
     text-align: center;
   
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  
+    margin-top: 30px;
+
     padding-left: 20px;
     padding-right: 20px;
 }
@@ -21,4 +18,11 @@
     font-size:x-large;
 
     margin-right: 50px;
+}
+
+#crop_im {
+    width: 300px;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 30px;
 }

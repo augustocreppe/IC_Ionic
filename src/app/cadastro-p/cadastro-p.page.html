@@ -32,7 +32,7 @@
 
       <ion-item id="item" color="transparent">
         <ion-label position="floating">CPF</ion-label>
-        <ion-input formControlName="cpf" type="text" id="text_form" maxlength="11"></ion-input>
+        <ion-input formControlName="cpf" type="text" id="text_form" maxlength="14" [brmasker]="{person: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
         (errorControl.cpf.erros?.pattern ||
@@ -46,7 +46,7 @@
 
       <ion-item id="item" color="transparent">
         <ion-label position="floating">CEP</ion-label>
-        <ion-input formControlName="cep" type="text" id="text_form" maxlength="8"></ion-input>
+        <ion-input formControlName="cep" type="text" id="text_form" maxlength="10" [brmasker]="{mask: '00.000-000', type:'num'}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
         (errorControl.cep.erros?.pattern ||
@@ -72,7 +72,7 @@
       
       <ion-item id="item" color="transparent">
         <ion-label position="floating">Telefone</ion-label>
-        <ion-input formControlName="tel" type="text" id="text_form" maxlength="11"></ion-input>
+        <ion-input formControlName="tel" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
         (errorControl.tel.erros?.pattern ||
