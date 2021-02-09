@@ -22,10 +22,26 @@ export class CameraPage implements OnInit {
     this.loadWorker();
   }
 
+  async ngOnInit() {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: true,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera,
+      });
+  
+      this.image = image.dataUrl;
+      console.log('image: ', this.image);
+    }
+    catch {
+      this.router.navigate(['/menu']);
+    }
+  }
+
   async loadWorker() {
     this.worker = createWorker({
       logger: progress => {
-        console.log(progress)
         if (progress.status == 'recognizing text') {
           this.captureProgress = parseInt('' + progress.progress * 100);
         }
@@ -38,37 +54,24 @@ export class CameraPage implements OnInit {
   }
 
   async captureImage() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera,
-    });
-    console.log('image: ', image);
-    this.image = image.dataUrl;
-  }
-
-  async recognizeImage() {
-    const result = await this.worker.recognize(this.image);
-    console.log(result);
-    this.ocrResult = result.data.text;
-  }
-
-  async ngOnInit() {
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera,
-    });
-
-    this.image = image.dataUrl;
-    console.log('image: ', image);
-
-    if(this.image == '')
-    {
+    try {
+      const image = await Camera.getPhoto({
+        quality: 100,
+        allowEditing: true,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera,
+      });
+  
+      this.image = image.dataUrl;
+      console.log('image: ', this.image);
+    }
+    catch {
       this.router.navigate(['/menu']);
     }
   }
 
+  async recognizeImage() {
+    const result = await this.worker.recognize(this.image);
+    this.ocrResult = result.data.text;
+  }
 }
