@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AlertController } from '@ionic/angular';
+import { OwnerService } from '../core/services/owner.service';
 
 @Component({
   selector: 'app-home',
@@ -7,5 +9,29 @@ import { Component } from '@angular/core';
 })
 
 export class HomePage {
-  constructor() { }
+  constructor(
+    private alertController: AlertController,
+    private ownerService: OwnerService
+  ) {}
+
+  teste() {
+    this.ownerService.getUserWithId(1).subscribe(
+      (data) => {
+        console.log(data)
+        console.log(data.body)
+      }, (err) => this.connectionAlert(err)
+    )
+  }
+
+  connectionAlert(err): void {
+    const status: number = err.status;
+
+    this.alertController.create({
+      header: `Erro ${status}!`,
+      message: 'Algo inesperado aconteceu!\nVerifique a sua conexão....',
+      buttons: ['OK']
+    }).then(res => {
+      res.present();
+    });
+  }
 }
