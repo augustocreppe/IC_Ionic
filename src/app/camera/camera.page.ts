@@ -14,9 +14,12 @@ const { Camera } = Plugins;
 export class CameraPage implements OnInit {
   worker: Tesseract.Worker;
   workerReady = false;
+
   image = '';
-  ocrResult = '';
+  imageChangedEvent = '';
+  croppedImage = '';
   captureProgress = 0;
+  ocrResult = '';
 
   constructor(private router: Router) { 
     this.loadWorker();
@@ -75,7 +78,13 @@ export class CameraPage implements OnInit {
     this.ocrResult = result.data.text;
   }
 
-  //CROPPER -----------------------------------
+  fileChangeEvent(event: any): void {
+    this.imageChangedEvent = event;
+  }
 
+  imageCropped(image: string) {
+    this.croppedImage = image;
+    console.log("croppedImage:", this.croppedImage);
+  }
   
 }

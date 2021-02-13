@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ContaPageRoutingModule } from './conta-routing.module';
 import { ContaPage } from './conta.page';
-import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   imports: [
@@ -12,7 +11,6 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     IonicModule,
     ContaPageRoutingModule,
-    ImageCropperModule
   ],
   declarations: [ContaPage]
 })

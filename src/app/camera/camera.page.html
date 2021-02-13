@@ -8,7 +8,18 @@
 
 <ion-content>
   <div id="container">
-    <ion-img [src]="image" id="image"></ion-img>
+
+    <image-cropper
+        [imageBase64]="image"
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="3 / 1"
+        [resizeToWidth]="1024"
+        format="jpg"
+        (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+
+    <ion-img [src]="croppedImage.base64" id="crop_im"></ion-img>
 
     <ion-button id="button" expand="block" size="large" (click)="captureImage()">
       <ion-icon id="icon1" slot="start" name="camera-outline"></ion-icon>

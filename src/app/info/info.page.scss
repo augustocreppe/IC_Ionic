@@ -1,40 +1,36 @@
 #container {
     position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  
+    padding-top: 20px;
     padding-left: 20px;
     padding-right: 20px;
-
     text-align: justify;
-}
-  
-#button {
-    margin-top: 20px;
 }
 
 #title {
     font-weight: bold;
-    text-align:center;
-    font-size:x-large;
-
-    margin-right: 50px;
+    text-align: center;
+    font-size: xx-large;
 }
 
-#img_cti {
-    height: 100px;
-    width: 200px;
+#div_text {
+    margin-top: 15px;
+    padding-right: 8px;
 }
 
-#div_augusto {
-    margin-top: 10px;
+#text {
     font-size: larger;
+    text-align: justify;
 }
 
-#div_nilceu {
-    margin-top: 20px;
+#img_pibic {
+    width: 175px;
+    height: 70px;
+    margin-top: 15px;
+    margin-left: 145px;
+}
+
+#div_nome {
+    margin-top: 15px;
     font-size: larger;
 }
 
@@ -46,28 +42,15 @@
     color:black;
 }
 
-#text {
-    font-size: larger;
-    text-align: justify;
-}
-
-#img_pibic {
-    width: 180px;
-    height: 80px;
-    margin-top: 10px;
-    margin-left: 140px;
-}
-
 #img_cti {
-    width: 140px;
-    height: 70px;
-    margin-top: 0px;
-    margin-left: -10px;
+    height: 60px;
+    width: 115.2px;
+    margin-top: 20px;
 }
 
 #img_unesp {
+    height: 60px;
     width: 180px;
-    height: 70px;
-    margin-top: 0px;
-    margin-left: 10px;
+    margin-top: 20px;
+    margin-left: 25px;
 }
