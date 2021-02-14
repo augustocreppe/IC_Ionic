@@ -35,8 +35,7 @@
         <ion-input formControlName="cpf" type="text" id="text_form" maxlength="14" [brmasker]="{person: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
-        (errorControl.cpf.erros?.pattern ||
-        errorControl.cpf.errors?.minlength || 
+        (errorControl.cpf.errors?.minlength || 
         errorControl.cpf.errors?.maxlength ||
         errorControl.cpf.errors?.required)">
         <div id="erro_cpf">
@@ -49,8 +48,7 @@
         <ion-input formControlName="cep" type="text" id="text_form" maxlength="10" [brmasker]="{mask: '00.000-000', type:'num'}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
-        (errorControl.cep.erros?.pattern ||
-        errorControl.cep.errors?.minlength || 
+        (errorControl.cep.errors?.minlength || 
         errorControl.cep.errors?.maxlength ||
         errorControl.cep.errors?.required)">
         <div id="erro_cep">
@@ -75,8 +73,7 @@
         <ion-input formControlName="tel" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
-        (errorControl.tel.erros?.pattern ||
-        errorControl.tel.errors?.minlength || 
+        (errorControl.tel.errors?.minlength || 
         errorControl.tel.errors?.maxlength ||
         errorControl.tel.errors?.required)">
         <div id="erro_tel">
