@@ -14,7 +14,7 @@
     <div id="div_form">
       <ion-item id="item" color="transparent">
         <ion-label position="floating">Nome</ion-label>
-        <ion-input formControlName="nome" type="text" id="text_form" maxlength="30"></ion-input>
+        <ion-input formControlName="name" type="text" id="text_form" maxlength="30"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
         (errorControl.nome.errors?.minlength || 
@@ -27,7 +27,7 @@
 
       <ion-item id="item" color="transparent">
         <ion-label position="floating">Data de Nascimento</ion-label>
-        <ion-datetime (ionChange)="getDate($event)" formControlName="data" [value]="defaultDate"></ion-datetime>
+        <ion-datetime (ionChange)="getDate($event)" formControlName="birthdate" [value]="defaultDate"></ion-datetime>
       </ion-item>
 
       <ion-item id="item" color="transparent">
@@ -70,7 +70,7 @@
       
       <ion-item id="item" color="transparent">
         <ion-label position="floating">Telefone</ion-label>
-        <ion-input formControlName="tel" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
+        <ion-input formControlName="phone" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
         (errorControl.tel.errors?.minlength || 
@@ -83,7 +83,7 @@
 
       <ion-item id="item" color="transparent" lines="full">
         <ion-label position="floating">Tipo</ion-label>
-        <ion-radio-group formControlName="tipo" >
+        <ion-radio-group formControlName="type" >
           <br>
           <ion-item id="item_r1" color="transparent" lines="none">
             <ion-radio slot="start" value="morador" id="radio"></ion-radio>
@@ -112,8 +112,7 @@
       id="button" 
       type="submit" 
       expand="block" 
-      size="large" 
-      (click)="cadastrarPessoa()">
+      size="large">
       <ion-icon id="icon2" slot="start" name="person-add-outline"></ion-icon>
       Cadastrar Pessoa
     </ion-button>

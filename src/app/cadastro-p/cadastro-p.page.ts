@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { OwnerService } from '../core/services/owner.service';
+import { OwnerInterface } from '../core/interfaces/owner.interface';
+import { CreateOwnerInterface } from '../core/interfaces/create-owner.interface';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cadastro-p',
@@ -12,17 +16,21 @@ export class CadastroPPage implements OnInit {
   defaultDate = "2000-01-01";
   isSubmitted = false;
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(
+    public formBuilder: FormBuilder,
+    private loadingController: LoadingController,
+    private ownerService: OwnerService
+  ) {}
 
   ngOnInit() {
     this.formCadP = this.formBuilder.group({
-      nome:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      data:   [this.defaultDate],
+      name:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      birthdate:   [this.defaultDate],
       cpf:    ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
       cep:    ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       email:  ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      tel:    ['', [Validators.required, Validators.minLength(15), Validators.maxLength(15)]],
-      tipo:   ['', [Validators.required]]
+      phone:    ['', [Validators.required, Validators.minLength(15), Validators.maxLength(15)]],
+      type:   ['', [Validators.required]]
     })
   }
 
@@ -41,9 +49,38 @@ export class CadastroPPage implements OnInit {
     this.isSubmitted = true;
     if (!this.formCadP.valid) {
       return false;
-    } 
-    else {
-      console.log(this.formCadP.value)
     }
+
+    const loading = this.loadingController.create({
+      message: 'Salvando os dados...'
+    }).then(anim => {
+      anim.present();
+
+      let cpf: string = this.formCadP.get('cpf').value;
+      cpf = cpf.replace('.', '').replace('.', '').replace('-', '');
+
+      let cep: string = this.formCadP.get('cep').value;
+      cep = cep.replace('.', '').replace('-', '');
+
+      let phone: string = this.formCadP.get('phone').value;
+      phone = phone.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
+
+      const data: CreateOwnerInterface = {
+        name: this.formCadP.get('name').value,
+        email: this.formCadP.get('email').value,
+        cpf,
+        birthdate: this.formCadP.get('birthdate').value,
+        cep,
+        phone,
+        type: this.formCadP.get('type').value
+      }
+
+      this.ownerService.createOwner(data).subscribe(
+        (res) => {}, 
+        (err) => console.log(err)
+      );
+
+      anim.dismiss();
+    });
   }
 }

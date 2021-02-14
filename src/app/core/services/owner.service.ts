@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { OwnerInterface } from '../interfaces/owner.interface';
 import { VehicleInterface } from '../interfaces/vehicle.interface';
+import { CreateOwnerInterface } from '../interfaces/create-owner.interface';
 
 const baseURL = environment.apiURL + '/owner';
 
@@ -14,7 +15,7 @@ export class OwnerService {
     private http: HttpClient
   ) {}
 
-  createOwner(ownerData: OwnerInterface) {
+  createOwner(ownerData: CreateOwnerInterface) {
     const url = baseURL + `/new`;
 
     const data = {
