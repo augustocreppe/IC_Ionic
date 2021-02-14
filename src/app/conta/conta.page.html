@@ -8,6 +8,17 @@
 
 <ion-content>
   <div id="container">
-    
+    <ion-input type="file" (change)="fileChangeEvent($event)"></ion-input>
+
+    <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="3 / 1"
+        [resizeToWidth]="64"
+        format="jpg"
+        (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+
+    <ion-img [src]="croppedImage.base64" id="crop_im"></ion-img>
   </div>
 </ion-content>
