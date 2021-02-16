@@ -10,6 +10,7 @@ const baseURL = environment.apiURL + '/owner';
 @Injectable({
   providedIn: 'root'
 })
+
 export class OwnerService {
   constructor(
     private http: HttpClient

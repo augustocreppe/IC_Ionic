@@ -14,77 +14,72 @@
     <div id="div_form">
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Placa</ion-label>
-          <ion-input formControlName="placa" type="text" id="text_form" maxlength="7"></ion-input>
+          <ion-input formControlName="plate" type="text" id="text_form" maxlength="7"></ion-input>
         </ion-item>
         <span *ngIf="isSubmitted &&
-          (errorControl.placa.errors?.pattern  ||
-          errorControl.placa.errors?.minlength || 
-          errorControl.placa.errors?.maxlength ||
-          errorControl.placa.errors?.required)">
-          <div id="erro_placa">
+          (errorControl.plate.errors?.pattern  ||
+          errorControl.plate.errors?.minlength || 
+          errorControl.plate.errors?.maxlength ||
+          errorControl.plate.errors?.required)">
+          <div id="erro_plate">
             Placa Inválida!
           </div>
         </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Marca</ion-label>
-          <ion-input formControlName="marca" type="text" id="text_form" maxlength="15"></ion-input>
+          <ion-input formControlName="brand" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
         <span *ngIf="isSubmitted &&
-          (errorControl.marca.errors?.minlength || 
-          errorControl.marca.errors?.maxlength ||
-          errorControl.marca.errors?.required)">
-          <div id="erro_marca">
+          (errorControl.brand.errors?.minlength || 
+          errorControl.brand.errors?.maxlength ||
+          errorControl.brand.errors?.required)">
+          <div id="erro_brand">
             Marca Inválida!
           </div>
         </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Modelo</ion-label>
-          <ion-input formControlName="modelo" type="text" id="text_form" maxlength="15"></ion-input>
+          <ion-input formControlName="model" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
         <span *ngIf="isSubmitted &&
-          (errorControl.modelo.errors?.minlength || 
-          errorControl.modelo.errors?.maxlength ||
-          errorControl.modelo.errors?.required)">
-          <div id="erro_modelo">
+          (errorControl.model.errors?.minlength || 
+          errorControl.model.errors?.maxlength ||
+          errorControl.model.errors?.required)">
+          <div id="erro_model">
             Modelo Inválido!
           </div>
         </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Cor</ion-label>
-          <ion-input formControlName="cor" type="text" id="text_form" maxlength="15"></ion-input>
+          <ion-input formControlName="colour" type="text" id="text_form" maxlength="15"></ion-input>
         </ion-item>
         <span *ngIf="isSubmitted &&
-          (errorControl.cor.errors?.minlength || 
-          errorControl.cor.errors?.maxlength ||
-          errorControl.cor.errors?.required)">
-          <div id="erro_cor">
+          (errorControl.colour.errors?.minlength || 
+          errorControl.colour.errors?.maxlength ||
+          errorControl.colour.errors?.required)">
+          <div id="erro_colour">
             Cor Inválida!
           </div>
         </span>
 
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Proprietário</ion-label>
-          <ion-input formControlName="prop" type="text" id="text_form" maxlength="15"></ion-input>
+          <ion-select formControlName="owner" *ngIf="ready">
+            <ion-select-option *ngFor="let owner of owners" [value]="owner.id">{{owner.name}}</ion-select-option>
+          </ion-select>
         </ion-item>
         <span *ngIf="isSubmitted &&
-          (errorControl.prop.errors?.minlength || 
-          errorControl.prop.errors?.maxlength ||
-          errorControl.prop.errors?.required)">
-          <div id="erro_prop">
+          (errorControl.owner.errors?.required)">
+          <div id="erro_owner">
             Proprietário Inválido!
           </div>
         </span>
     </div>
 
-    <ion-button 
-      id="button" 
-      type="submit" 
-      expand="block" 
-      size="large" 
-      (click)="cadastrarVeiculo()">
+    <ion-button id="button" type="submit" expand="block" size="large">
       <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
       Cadastrar Veículo
     </ion-button>

@@ -17,10 +17,10 @@
         <ion-input formControlName="name" type="text" id="text_form" maxlength="30"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
-        (errorControl.nome.errors?.minlength || 
-        errorControl.nome.errors?.maxlength ||
-        errorControl.nome.errors?.required)">
-        <div id="erro_nome">
+        (errorControl.name.errors?.minlength || 
+        errorControl.name.errors?.maxlength ||
+        errorControl.name.errors?.required)">
+        <div id="erro_name">
           Nome Inválido!
         </div>
       </span>
@@ -73,10 +73,10 @@
         <ion-input formControlName="phone" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
       </ion-item>
       <span *ngIf="isSubmitted &&
-        (errorControl.tel.errors?.minlength || 
-        errorControl.tel.errors?.maxlength ||
-        errorControl.tel.errors?.required)">
-        <div id="erro_tel">
+        (errorControl.phone.errors?.minlength || 
+        errorControl.phone.errors?.maxlength ||
+        errorControl.phone.errors?.required)">
+        <div id="erro_phone">
           Telefone Inválido!
         </div>
       </span>
@@ -102,17 +102,13 @@
         </ion-radio-group>
       </ion-item>
       <span *ngIf="isSubmitted && errorControl.tipo.errors?.required">
-        <div id="erro_tipo">
+        <div id="erro_type">
           Informe o Tipo!
         </div>
       </span>
     </div>
 
-    <ion-button 
-      id="button" 
-      type="submit" 
-      expand="block" 
-      size="large">
+    <ion-button id="button" type="submit" expand="block" size="large">
       <ion-icon id="icon2" slot="start" name="person-add-outline"></ion-icon>
       Cadastrar Pessoa
     </ion-button>

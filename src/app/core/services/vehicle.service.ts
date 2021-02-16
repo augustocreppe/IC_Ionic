@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { VehicleInterface } from '../interfaces/vehicle.interface';
+import { CreateVehicleInterface } from "../interfaces/create-vehicle.interface";
 
 const baseURL = environment.apiURL + '/vehicle';
 
@@ -13,7 +14,7 @@ export class VehicleService {
     private http: HttpClient
   ) {}
 
-  createVehicle(vehicleData: VehicleInterface) {
+  createVehicle(vehicleData: CreateVehicleInterface) {
     const url = baseURL + `/new`;
 
     const data = {
