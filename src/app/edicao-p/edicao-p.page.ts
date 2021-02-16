@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { OwnerService } from '../core/services/owner.service';
+import { OwnerInterface } from '../core/interfaces/owner.interface';
+import { CreateOwnerInterface } from '../core/interfaces/create-owner.interface';
+import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
