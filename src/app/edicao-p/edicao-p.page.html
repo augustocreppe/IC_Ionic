@@ -18,7 +18,7 @@
         
           <ion-card-content>
             <ion-input 
-              formControlName="nome" 
+              formControlName="name" 
               type="text" 
               placeholder="Nome"
               id="text_form_2" 
@@ -27,12 +27,7 @@
           </ion-card-content>
         </div>
     
-        <ion-button 
-          id="button" 
-          type="submit" 
-          expand="block" 
-          size="large" 
-          (click)="pesquisarPessoa()">
+        <ion-button id="button" type="submit" expand="block" size="large">
           <ion-icon id="icon2" slot="start" name="search-outline"></ion-icon>
           Pesquisar Pessoa
         </ion-button>
@@ -42,9 +37,9 @@
 
       <div id="div_erro">
         <span class="error ion-padding" *ngIf="isSubmitted &&
-        (errorControl.nome.errors?.minlength || 
-        errorControl.nome.errors?.maxlength ||
-        errorControl.nome.errors?.required)">
+        (errorControl.name.errors?.minlength || 
+        errorControl.name.errors?.maxlength ||
+        errorControl.name.errors?.required)">
           <div id="div_erro_2">
             Nome inválido!
           </div>
@@ -57,20 +52,20 @@
         <div id="div_form">
           <ion-item id="item" color="transparent">
             <ion-label position="floating">Nome</ion-label>
-            <ion-input formControlName="nome" type="text" id="text_form" maxlength="30" ></ion-input>
+            <ion-input formControlName="name" type="text" id="text_form" maxlength="30"></ion-input>
           </ion-item>
           <span *ngIf="isSubmitted &&
-            (errorControl2.nome.errors?.minlength || 
-            errorControl2.nome.errors?.maxlength ||
-            errorControl2.nome.errors?.required)">
-            <div id="erro_nome">
+            (errorControl.name.errors?.minlength || 
+            errorControl.name.errors?.maxlength ||
+            errorControl.name.errors?.required)">
+            <div id="erro_name">
               Nome Inválido!
             </div>
           </span>
     
           <ion-item id="item" color="transparent">
             <ion-label position="floating">Data de Nascimento</ion-label>
-            <ion-datetime (ionChange)="getDate($event)" formControlName="data" [value]="defaultDate"></ion-datetime>
+            <ion-datetime (ionChange)="getDate($event)" formControlName="birthdate" [value]="defaultDate"></ion-datetime>
           </ion-item>
     
           <ion-item id="item" color="transparent">
@@ -78,9 +73,9 @@
             <ion-input formControlName="cpf" type="text" id="text_form" maxlength="14" [brmasker]="{person: true}"></ion-input>
           </ion-item>
           <span *ngIf="isSubmitted &&
-            (errorControl2.cpf.errors?.minlength || 
-            errorControl2.cpf.errors?.maxlength ||
-            errorControl2.cpf.errors?.required)">
+            (errorControl.cpf.errors?.minlength || 
+            errorControl.cpf.errors?.maxlength ||
+            errorControl.cpf.errors?.required)">
             <div id="erro_cpf">
               CPF Inválido!
             </div>
@@ -91,9 +86,9 @@
             <ion-input formControlName="cep" type="text" id="text_form" maxlength="10" [brmasker]="{mask: '00.000-000', type:'num'}"></ion-input>
           </ion-item>
           <span *ngIf="isSubmitted &&
-            (errorControl2.cep.errors?.minlength || 
-            errorControl2.cep.errors?.maxlength ||
-            errorControl2.cep.errors?.required)">
+            (errorControl.cep.errors?.minlength || 
+            errorControl.cep.errors?.maxlength ||
+            errorControl.cep.errors?.required)">
             <div id="erro_cep">
               CEP Inválido!
             </div>
@@ -104,8 +99,8 @@
             <ion-input formControlName="email" type="email" id="text_form"></ion-input>
           </ion-item>
           <span *ngIf="isSubmitted &&
-            (errorControl2.email.erros?.pattern ||
-            errorControl2.email.errors?.required)">
+            (errorControl.email.erros?.pattern ||
+            errorControl.email.errors?.required)">
             <div id="erro_email">
               E-mail Inválido!
             </div>
@@ -113,20 +108,20 @@
           
           <ion-item id="item" color="transparent">
             <ion-label position="floating">Telefone</ion-label>
-            <ion-input formControlName="tel" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
+            <ion-input formControlName="phone" type="text" id="text_form" maxlength="15" [brmasker]="{phone: true}"></ion-input>
           </ion-item>
           <span *ngIf="isSubmitted &&
-            (errorControl2.tel.errors?.minlength || 
-            errorControl2.tel.errors?.maxlength ||
-            errorControl2.tel.errors?.required)">
-            <div id="erro_tel">
+            (errorControl.phone.errors?.minlength || 
+            errorControl.phone.errors?.maxlength ||
+            errorControl.phone.errors?.required)">
+            <div id="erro_phone">
               Telefone Inválido!
             </div>
           </span>
     
           <ion-item id="item" color="transparent" lines="full">
             <ion-label position="floating">Tipo</ion-label>
-            <ion-radio-group formControlName="tipo" >
+            <ion-radio-group formControlName="type" >
               <br>
               <ion-item id="item_r1" color="transparent" lines="none">
                 <ion-radio slot="start" value="morador" id="radio"></ion-radio>
@@ -144,21 +139,21 @@
               </ion-item>
             </ion-radio-group>
           </ion-item>
-          <span *ngIf="isSubmitted && errorControl2.tipo.errors?.required">
-            <div id="erro_tipo">
+          <span *ngIf="isSubmitted && errorControl.tipo.errors?.required">
+            <div id="erro_type">
               Informe o Tipo!
             </div>
           </span>
         </div>
     
-        <ion-button 
-          id="button_2" 
-          type="submit" 
-          expand="block" 
-          size="large" 
-          (click)="alterarPessoa()">
+        <ion-button id="button" type="submit" expand="block" size="large">
           <ion-icon id="icon2" slot="start" name="save-outline"></ion-icon>
           Alterar Pessoa
+        </ion-button>
+
+        <ion-button id="button" type="submit" expand="block" size="large">
+          <ion-icon id="icon2" slot="start" name="save-outline"></ion-icon>
+          Excluir Pessoa
         </ion-button>
       </form>
     </a>

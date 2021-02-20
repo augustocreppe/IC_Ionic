@@ -25,17 +25,17 @@ export class EdicaoPPage implements OnInit {
 
   ngOnInit() {
     this.formEditP = this.formBuilder.group({
-      nome:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      name:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
     })
 
     this.formEditP2 = this.formBuilder.group({
-      nome:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-      data:   [this.defaultDate],
-      cpf:    ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
-      cep:    ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
-      email:  ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
-      tel:    ['', [Validators.required, Validators.minLength(15), Validators.maxLength(15)]],
-      tipo:   ['', [Validators.required]]
+      name:       ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
+      birthdate:  [this.defaultDate],
+      cpf:        ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      cep:        ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
+      email:      ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      phone:      ['', [Validators.required, Validators.minLength(15), Validators.maxLength(15)]],
+      type:       ['', [Validators.required]]
     })
   }
 
@@ -60,6 +60,8 @@ export class EdicaoPPage implements OnInit {
       return false;
     } 
     else {
+
+      //Pesquisar nome
       console.log(this.formEditP.value);
       
       this.modoPesquisa = false;
@@ -73,6 +75,8 @@ export class EdicaoPPage implements OnInit {
       return false;
     } 
     else {
+
+      //alterar dados
       console.log(this.formEditP2.value);
       
       alert("alterado!");
