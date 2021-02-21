@@ -33,8 +33,12 @@ export class VehicleService {
     });
   }
 
-  getAllVehicles() {
-    const url = baseURL + `/`;
+  getAllVehicles(plate: string) {
+    let url = baseURL + `/`;
+
+    if(plate) {
+      url += `?plate=${plate}`;
+    }
 
     return this.http.get<VehicleInterface[]>(url, {
       observe: 'response',

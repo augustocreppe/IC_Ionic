@@ -28,7 +28,7 @@ export class CadastroVPage implements OnInit {
 
   ngOnInit() {
     //listar todos os owners
-    this.ownerService.getAllOwners().subscribe(
+    this.ownerService.getAllOwners(null).subscribe(
       (data) => {
         this.owners = data.body;
         console.log(this.owners)

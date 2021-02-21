@@ -37,8 +37,12 @@ export class OwnerService {
     });
   }
 
-  getAllOwners() {
-    const url = baseURL + `/`;
+  getAllOwners(name: string) {
+    let url = baseURL + `/`;
+
+    if(name) {
+      url += `?name=${name}`;
+    }
 
     return this.http.get<OwnerInterface[]>(url, {
       observe: 'response',
