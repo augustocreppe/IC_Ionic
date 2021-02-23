@@ -52,7 +52,7 @@ export class OwnerService {
     });
   }
 
-  getUserWithId(id: number) {
+  getOwnerWithId(id: number) {
     const url = baseURL + `/${id}`;
 
     return this.http.get<OwnerInterface>(url, {

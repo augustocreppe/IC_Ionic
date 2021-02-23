@@ -20,8 +20,15 @@ export class EdicaoPPage implements OnInit {
   modoPesquisa = true;
   modoMostra = false;
   defaultDate = "2000-01-01";
+  owners: OwnerInterface[];
+  ready = false;
 
-  constructor(public formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    public formBuilder: FormBuilder, 
+    private loadingController: LoadingController,
+    private ownerService: OwnerService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.formEditP = this.formBuilder.group({
@@ -59,9 +66,15 @@ export class EdicaoPPage implements OnInit {
     if (!this.formEditP.valid) {
       return false;
     } 
-    else {
-
+    else { 
       //Pesquisar nome
+      this.ownerService.getAllOwners(null).subscribe(
+        (data) => {
+          this.owners = data.body;
+          console.log(this.owners)
+          this.ready = true;
+        }
+      );
       console.log(this.formEditP.value);
       
       this.modoPesquisa = false;
@@ -74,12 +87,37 @@ export class EdicaoPPage implements OnInit {
     if (!this.formEditP2.valid) {
       return false;
     } 
-    else {
+    
+    const loading = this.loadingController.create({
+      message: 'Salvando os dados...'
+    }).then(anim => {
+      anim.present();
 
-      //alterar dados
-      console.log(this.formEditP2.value);
-      
-      alert("alterado!");
-    }
+      let cpf: string = this.formEditP2.get('cpf').value;
+      cpf = cpf.replace('.', '').replace('.', '').replace('-', '');
+
+      let cep: string = this.formEditP2.get('cep').value;
+      cep = cep.replace('.', '').replace('-', '');
+
+      let phone: string = this.formEditP2.get('phone').value;
+      phone = phone.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
+
+      const data: CreateOwnerInterface = {
+        name: this.formEditP2.get('name').value,
+        email: this.formEditP2.get('email').value,
+        cpf,
+        birthdate: this.formEditP2.get('birthdate').value,
+        cep,
+        phone,
+        type: this.formEditP2.get('type').value
+      }
+
+      this.ownerService.editOwner(id, data).subscribe(
+        (res) => { alert("Alteração feita com sucesso!"), this.router.navigate(['/menu']); }, 
+        (err) => console.log(err)
+      );
+
+      anim.dismiss();
+    });
   }
 }
