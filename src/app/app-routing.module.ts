@@ -23,10 +23,6 @@ const routes: Routes = [
     loadChildren: () => import('./digitar/digitar.module').then( m => m.DigitarPageModule)
   },
   {
-    path: 'conta',
-    loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
-  },
-  {
     path: 'cadastro-p',
     loadChildren: () => import('./cadastro-p/cadastro-p.module').then( m => m.CadastroPPageModule)
   },
@@ -35,12 +31,24 @@ const routes: Routes = [
     loadChildren: () => import('./cadastro-v/cadastro-v.module').then( m => m.CadastroVPageModule)
   },
   {
+    path: 'search-p',
+    loadChildren: () => import('./search-p/search-p.module').then( m => m.SearchPPageModule)
+  },
+  {
+    path: 'search-v',
+    loadChildren: () => import('./search-v/search-v.module').then( m => m.SearchVPageModule)
+  },
+  {
     path: 'edicao-v',
     loadChildren: () => import('./edicao-v/edicao-v.module').then( m => m.EdicaoVPageModule)
   },
   {
     path: 'edicao-p',
     loadChildren: () => import('./edicao-p/edicao-p.module').then( m => m.EdicaoPPageModule)
+  },
+  {
+    path: 'conta',
+    loadChildren: () => import('./conta/conta.module').then( m => m.ContaPageModule)
   },
   {
     path: '',

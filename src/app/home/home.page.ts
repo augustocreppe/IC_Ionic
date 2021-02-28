@@ -15,7 +15,7 @@ export class HomePage {
   ) {}
 
   teste() {
-    this.ownerService.getUserWithId(1).subscribe(
+    this.ownerService.getOwnerWithId(1).subscribe(
       (data) => {
         console.log(data)
         console.log(data.body)

@@ -88,36 +88,6 @@ export class EdicaoPPage implements OnInit {
       return false;
     } 
     
-    const loading = this.loadingController.create({
-      message: 'Salvando os dados...'
-    }).then(anim => {
-      anim.present();
-
-      let cpf: string = this.formEditP2.get('cpf').value;
-      cpf = cpf.replace('.', '').replace('.', '').replace('-', '');
-
-      let cep: string = this.formEditP2.get('cep').value;
-      cep = cep.replace('.', '').replace('-', '');
-
-      let phone: string = this.formEditP2.get('phone').value;
-      phone = phone.replace('(', '').replace(')', '').replace(' ', '').replace('-', '');
-
-      const data: CreateOwnerInterface = {
-        name: this.formEditP2.get('name').value,
-        email: this.formEditP2.get('email').value,
-        cpf,
-        birthdate: this.formEditP2.get('birthdate').value,
-        cep,
-        phone,
-        type: this.formEditP2.get('type').value
-      }
-
-      this.ownerService.editOwner(id, data).subscribe(
-        (res) => { alert("Alteração feita com sucesso!"), this.router.navigate(['/menu']); }, 
-        (err) => console.log(err)
-      );
-
-      anim.dismiss();
-    });
+    //Alterar Pessoa
   }
 }

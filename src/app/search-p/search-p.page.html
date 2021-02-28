@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <ion-searchbar placeholder="Nome" id="barra" [(ngModel)]="searchText" (ionInput)="searchOwner($event)"></ion-searchbar>
+  </div>
+
+  <a *ngIf="searchText">
+    Oi
+  </a>
+</ion-content>
