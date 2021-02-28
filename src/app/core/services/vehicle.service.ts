@@ -22,7 +22,7 @@ export class VehicleService {
       brand: vehicleData.brand,
       model: vehicleData.model,
       colour: vehicleData.colour,
-      ownerId: vehicleData.ownerId
+      ownerId: `${vehicleData.ownerId}`
     };
 
     return this.http.post<VehicleInterface>(url, data, {

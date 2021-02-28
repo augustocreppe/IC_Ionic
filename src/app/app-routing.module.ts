@@ -39,12 +39,12 @@ const routes: Routes = [
     loadChildren: () => import('./search-v/search-v.module').then( m => m.SearchVPageModule)
   },
   {
-    path: 'edicao-v',
-    loadChildren: () => import('./edicao-v/edicao-v.module').then( m => m.EdicaoVPageModule)
+    path: 'edicao-p/:id',
+    loadChildren: () => import('./edicao-p/edicao-p.module').then( m => m.EdicaoPPageModule)
   },
   {
-    path: 'edicao-p',
-    loadChildren: () => import('./edicao-p/edicao-p.module').then( m => m.EdicaoPPageModule)
+    path: 'edicao-v',
+    loadChildren: () => import('./edicao-v/edicao-v.module').then( m => m.EdicaoVPageModule)
   },
   {
     path: 'conta',

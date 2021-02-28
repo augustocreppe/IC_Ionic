@@ -8,7 +8,43 @@
 
 <ion-content>
   <div id="container">
-    Pesquisa de Veículo
-    <ion-searchbar placeholder="Nome"></ion-searchbar>
+    <ion-searchbar placeholder="Digite a Placa" id="barra" [(ngModel)]="searchText" (ionInput)="searchVehicle($event)"></ion-searchbar>
+  </div>
+
+  <div id="div_space"></div>
+
+  <div *ngFor="let vehicle of vehicles" id="div_results">
+  <div *ngIf="searchText">
+    <div id="result">
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Placa: {{ vehicle.name }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Marca: {{ vehicle.brand }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Modelo: {{ vehicle.model }}}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Cor: {{ vehicle.colour }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none" button (click)="falarEmail(owner.email)">
+        <ion-text>Proprietário: {{ vehicle.owner }}</ion-text>
+      </ion-item>
+      <ion-item id="item2" color="transparent" lines="none">
+        __________________________ <br>
+      </ion-item>
+
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p/{{ owner.id }}">
+        <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
+        Editar
+      </ion-button>
+
+      <ion-button id="button2" expand="block" size="large" routerLink="/exclusao-p">
+        <ion-icon id="icon2" slot="start" name="trash-outline"></ion-icon>
+        Excluir
+      </ion-button>
+    </div>
+  </div>
   </div>
 </ion-content>

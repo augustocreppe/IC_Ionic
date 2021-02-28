@@ -16,8 +16,10 @@ import { OwnerInterface } from '../core/interfaces/owner.interface';
 export class CadastroVPage implements OnInit {
   formCadV: FormGroup;
   isSubmitted = false;
-  ready = false;
   owners: OwnerInterface[];
+  vehicle: VehicleInterface;
+  ready = false;
+  router: any;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -27,11 +29,9 @@ export class CadastroVPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    //listar todos os owners
     this.ownerService.getAllOwners(null).subscribe(
       (data) => {
         this.owners = data.body;
-        console.log(this.owners)
         this.ready = true;
       }
     );
@@ -70,7 +70,7 @@ export class CadastroVPage implements OnInit {
       }
 
       this.vehicleService.createVehicle(data).subscribe(
-        (res) => {}, 
+        (res) => { alert("Cadastro feito com sucesso!"), this.router.navigate(['/menu']); },
         (err) => console.log(err)
       );
 

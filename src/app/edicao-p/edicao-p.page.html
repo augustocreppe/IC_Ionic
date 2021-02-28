@@ -7,7 +7,7 @@
 </ion-header>
 
 <ion-content>
-  <div id="container">
+  <div id="container" *ngIf="ready">
     <form [formGroup]="formEditP" (ngSubmit)="alterarPessoa()" novalidate>
       <div id="div_form">
         <ion-item id="item" color="transparent">
@@ -22,24 +22,12 @@
             Nome Inválido!
           </div>
         </span>
-  
+        
+        
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Data de Nascimento</ion-label>
-          <ion-datetime (ionChange)="getDate($event)" formControlName="birthdate" [value]="defaultDate"></ion-datetime>
+          <ion-datetime (ionChange)="getDate($event)" formControlName="birthdate"></ion-datetime>
         </ion-item>
-  
-        <ion-item id="item" color="transparent">
-          <ion-label position="floating">CPF</ion-label>
-          <ion-input formControlName="cpf" type="text" id="text_form" maxlength="14" [brmasker]="{person: true}"></ion-input>
-        </ion-item>
-        <span *ngIf="isSubmitted &&
-          (errorControl.cpf.errors?.minlength || 
-          errorControl.cpf.errors?.maxlength ||
-          errorControl.cpf.errors?.required)">
-          <div id="erro_cpf">
-            CPF Inválido!
-          </div>
-        </span>
   
         <ion-item id="item" color="transparent">
           <ion-label position="floating">CEP</ion-label>
@@ -81,7 +69,7 @@
   
         <ion-item id="item" color="transparent" lines="full">
           <ion-label position="floating">Tipo</ion-label>
-          <ion-radio-group formControlName="type" >
+          <ion-radio-group formControlName="type">
             <br>
             <ion-item id="item_r1" color="transparent" lines="none">
               <ion-radio slot="start" value="morador" id="radio"></ion-radio>
@@ -109,12 +97,8 @@
       <ion-button id="button" type="submit" expand="block" size="large">
         <ion-icon id="icon2" slot="start" name="save-outline"></ion-icon>
         Alterar Pessoa
-      </ion-button>
-
-      <ion-button id="button" type="submit" expand="block" size="large">
-        <ion-icon id="icon2" slot="start" name="save-outline"></ion-icon>
-        Excluir Pessoa
-      </ion-button>
+      </ion-button> 
     </form>
+    <br>
   </div>
 </ion-content>

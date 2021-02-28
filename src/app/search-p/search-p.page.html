@@ -7,32 +7,36 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div id="container">
     <ion-searchbar placeholder="Digite o Nome" id="barra" [(ngModel)]="searchText" (ionInput)="searchOwner($event)"></ion-searchbar>
   </div>
 
   <div id="div_space"></div>
   
-  <div *ngFor="let owner of owners" id="div_results">
-  <div *ngIf="searchText">
+  <div *ngFor="let owner of showOwners" id="div_results">
+  <div>
     <div id="result">
-      <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Nome: {{ owner.name }}</ion-text>
+      <ion-item id="item" color="transparent" lines="none" button (click)="falarNome(owner.name)">
+        <ion-text>Nome: {{ owner.name.substring(0,12) }}<ion-text *ngIf="owner.email.length >= 13">...</ion-text></ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Data: {{ owner.birthdate.substring(0,10) }}</ion-text>
+        <ion-text>Nascimento: {{ owner.birthdate.substring(8,10) }}/{{ owner.birthdate.substring(5,7) }}/{{ owner.birthdate.substring(0,4) }}</ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
-        <ion-text>CPF: {{ owner.cpf }}</ion-text>
+        <ion-text>CPF: {{ owner.cpf.substring(0,3) }}.{{ owner.cpf.substring(3,6) }}.{{ owner.cpf.substring(6,9) }}-{{ owner.cpf.substring(9,11) }}</ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
-        <ion-text>CEP: {{ owner.cep }}</ion-text>
+        <ion-text>CEP: {{ owner.cep.substring(0,2) }}.{{ owner.cep.substring(2,5) }}-{{ owner.cep.substring(5,8) }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none"> <!--button (click)="emailClick({{ owner.email }})"-->
-        <ion-text>Email: {{ owner.email }}</ion-text>
+      <ion-item id="item" color="transparent" lines="none" button (click)="falarEmail(owner.email)">
+        <ion-text>Email: {{ owner.email.substring(0,12) }}<ion-text *ngIf="owner.email.length >= 13">...</ion-text> </ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Tel: {{ owner.phone }}</ion-text>
+        <ion-text>Tel: ({{ owner.phone.substring(0,2) }}){{ owner.phone.substring(2,7) }}-{{ owner.phone.substring(7,12) }}</ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
         <ion-text>Tipo: {{ owner.type }}</ion-text>
@@ -41,12 +45,12 @@
         __________________________ <br>
       </ion-item>
 
-      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p">
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p/{{ owner.id }}">
         <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
         Editar
       </ion-button>
 
-      <ion-button id="button2" expand="block" size="large" routerLink="/exclusao-p">
+      <ion-button id="button2" expand="block" size="large" (click)="excluirPessoa(owner.id)">
         <ion-icon id="icon2" slot="start" name="trash-outline"></ion-icon>
         Excluir
       </ion-button>
