@@ -14,11 +14,7 @@ import { Router } from '@angular/router';
 
 export class EdicaoPPage implements OnInit {
   formEditP: FormGroup;
-  formEditP2: FormGroup;
   isSubmitted = false;
-  isSubmitted2 = false;
-  modoPesquisa = true;
-  modoMostra = false;
   defaultDate = "2000-01-01";
   owners: OwnerInterface[];
   ready = false;
@@ -31,11 +27,8 @@ export class EdicaoPPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.formEditP = this.formBuilder.group({
-      name:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
-    })
 
-    this.formEditP2 = this.formBuilder.group({
+    this.formEditP = this.formBuilder.group({
       name:       ['', [Validators.required, Validators.minLength(3), Validators.maxLength(30)]],
       birthdate:  [this.defaultDate],
       cpf:        ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
@@ -48,7 +41,7 @@ export class EdicaoPPage implements OnInit {
 
   getDate(e) {
     let date = new Date(e.target.value).toISOString().substring(0, 10);
-    this.formEditP2.get('dob').setValue(date, {
+    this.formEditP.get('dob').setValue(date, {
       onlyself: true
     })
   }
@@ -57,34 +50,9 @@ export class EdicaoPPage implements OnInit {
     return this.formEditP.controls;
   }
 
-  get errorControl2() {
-    return this.formEditP2.controls;
-  }
-
-  pesquisarPessoa() {
+  alterarPessoa() {
     this.isSubmitted = true;
     if (!this.formEditP.valid) {
-      return false;
-    } 
-    else { 
-      //Pesquisar nome
-      this.ownerService.getAllOwners(null).subscribe(
-        (data) => {
-          this.owners = data.body;
-          console.log(this.owners)
-          this.ready = true;
-        }
-      );
-      console.log(this.formEditP.value);
-      
-      this.modoPesquisa = false;
-      this.modoMostra = true;
-    }
-  }
-
-  alterarPessoa() {
-    this.isSubmitted2 = true;
-    if (!this.formEditP2.valid) {
       return false;
     } 
     

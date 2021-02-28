@@ -18,7 +18,8 @@ export class DigitarPage implements OnInit {
       placa: ['', [Validators.required, 
                   Validators.minLength(7), 
                   Validators.maxLength(7), 
-                  Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
+                  Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')
+              ]],
     })
   }
 

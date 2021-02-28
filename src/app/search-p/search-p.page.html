@@ -8,10 +8,49 @@
 
 <ion-content>
   <div id="container">
-    <ion-searchbar placeholder="Nome" id="barra" [(ngModel)]="searchText" (ionInput)="searchOwner($event)"></ion-searchbar>
+    <ion-searchbar placeholder="Digite o Nome" id="barra" [(ngModel)]="searchText" (ionInput)="searchOwner($event)"></ion-searchbar>
   </div>
 
-  <a *ngIf="searchText">
-    Oi
-  </a>
+  <div id="div_space"></div>
+  
+  <div *ngFor="let owner of owners" id="div_results">
+  <div *ngIf="searchText">
+    <div id="result">
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Nome: {{ owner.name }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Data: {{ owner.birthdate.substring(0,10) }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>CPF: {{ owner.cpf }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>CEP: {{ owner.cep }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none"> <!--button (click)="emailClick({{ owner.email }})"-->
+        <ion-text>Email: {{ owner.email }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Tel: {{ owner.phone }}</ion-text>
+      </ion-item>
+      <ion-item id="item" color="transparent" lines="none">
+        <ion-text>Tipo: {{ owner.type }}</ion-text>
+      </ion-item>
+      <ion-item id="item2" color="transparent" lines="none">
+        __________________________ <br>
+      </ion-item>
+
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p">
+        <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
+        Editar
+      </ion-button>
+
+      <ion-button id="button2" expand="block" size="large" routerLink="/exclusao-p">
+        <ion-icon id="icon2" slot="start" name="trash-outline"></ion-icon>
+        Excluir
+      </ion-button>
+    </div>
+  </div>
+  </div>
 </ion-content>
