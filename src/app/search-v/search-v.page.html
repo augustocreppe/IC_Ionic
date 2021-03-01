@@ -7,6 +7,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="loadData($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <div id="container">
     <ion-searchbar placeholder="Digite a Placa" id="barra" [(ngModel)]="searchText" (ionInput)="searchVehicle($event)"></ion-searchbar>
   </div>
