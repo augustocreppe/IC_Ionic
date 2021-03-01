@@ -28,14 +28,14 @@
       <ion-item id="item" color="transparent" lines="none">
         <ion-text>Cor: {{ vehicle.colour }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none" button (click)="falarEmail(owner.email)">
+      <ion-item id="item" color="transparent" lines="none">
         <ion-text>Proprietário: {{ vehicle.owner }}</ion-text>
       </ion-item>
       <ion-item id="item2" color="transparent" lines="none">
         __________________________ <br>
       </ion-item>
 
-      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p/{{ owner.id }}">
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p/{{ vehicle.id }}">
         <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
         Editar
       </ion-button>

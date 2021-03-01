@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Router } from '@angular/router';
+import { VehicleService } from '../core/services/vehicle.service';
+import { VehicleInterface } from '../core/interfaces/vehicle.interface';
+import { LoadingController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-edicao-v',
@@ -10,58 +13,70 @@ import { Router } from '@angular/router';
 
 export class EdicaoVPage implements OnInit {
   formEditV: FormGroup;
-  formEditV2: FormGroup;
   isSubmitted = false;
-  isSubmitted2 = false;
-  modoPesquisa = true;
-  modoMostra = false;
+  vehicle: VehicleInterface;
+  id: number;
+  ready = false;
 
-  constructor(public formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    public formBuilder: FormBuilder, 
+    private loadingController: LoadingController,
+    private vehicleService: VehicleService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.formEditV = this.formBuilder.group({
-      placa: ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
-    })
+    this.route.params.subscribe(params => {
+      this.id = params['id']; 
+    });
 
-    this.formEditV2 = this.formBuilder.group({
-      placa:  ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],      
-      marca:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      modelo: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      cor:    ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-      prop:   ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-    })
+    this.vehicleService.getVehicleWithId(this.id).subscribe(
+      (data) => {
+        this.vehicle = data.body;
+
+        this.formEditV = this.formBuilder.group({
+          plate:    [this.vehicle.plate, [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],      
+          brand:    [this.vehicle.brand, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          model:    [this.vehicle.model, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          colour:   [this.vehicle.colour, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+          ownerId:  [this.vehicle.ownerId, [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
+        });
+
+        this.ready = true;
+      }
+    );
   }
 
   get errorControl() {
     return this.formEditV.controls;
   }
 
-  get errorControl2() {
-    return this.formEditV2.controls;
-  }
-
-  pesquisarVeiculo() {
+  alterarVeiculo() {
     this.isSubmitted = true;
     if (!this.formEditV.valid) {
       return false;
     } 
-    else {
-      console.log(this.formEditV.value);
-      
-      this.modoPesquisa = false;
-      this.modoMostra = true;
-    }
-  }
+    
+    const loading = this.loadingController.create({
+      message: 'Salvando os dados...'
+    }).then(anim => {
+      anim.present();
 
-  alterarVeiculo() {
-    this.isSubmitted2 = true;
-    if (!this.formEditV2.valid) {
-      return false;
-    } 
-    else {
-      console.log(this.formEditV2.value);
-      
-      alert("alterado!");
-    }
+      const data: VehicleInterface = {
+        plate: this.formEditV.get('name').value,
+        brand: this.formEditV.get('brand').value,
+        model: this.formEditV.get('model').value,
+        colour: this.formEditV.get('colour').value,
+        ownerId: this.formEditV.get('owner').value,
+      }
+
+      this.vehicleService.editVehicle(this.id, data).subscribe(
+        (res) => { alert("Edição feita com sucesso!"), this.router.navigate(['/menu']); }, 
+        (err) => console.log(err)
+      );
+
+      anim.dismiss();
+    });
   }
 }

@@ -6,6 +6,7 @@ import { CreateVehicleInterface } from '../core/interfaces/create-vehicle.interf
 import { LoadingController } from '@ionic/angular';
 import { OwnerService } from '../core/services/owner.service';
 import { OwnerInterface } from '../core/interfaces/owner.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-v',
@@ -19,13 +20,13 @@ export class CadastroVPage implements OnInit {
   owners: OwnerInterface[];
   vehicle: VehicleInterface;
   ready = false;
-  router: any;
 
   constructor(
     public formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private vehicleService: VehicleService,
-    private ownerService: OwnerService
+    private ownerService: OwnerService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -52,7 +53,6 @@ export class CadastroVPage implements OnInit {
   cadastrarVeiculo() {
     this.isSubmitted = true;
     if (!this.formCadV.valid) {
-      console.log('Por favor, forneça todos os dados!')
       return false;
     }
     

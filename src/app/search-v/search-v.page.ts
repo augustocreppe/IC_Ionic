@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class SearchVPage implements OnInit {
   vehicles: VehicleInterface[];
+  showVehicles: VehicleInterface[] = [];
   ready = false;
 
   constructor(
@@ -19,15 +20,30 @@ export class SearchVPage implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.loadData(null);
+  }
 
   searchVehicle(event) {
     const searchText = event.target.value;
 
-    this.vehicleService.getAllVehicles(searchText).subscribe(
+    this.showVehicles = this.vehicles.filter(vehicle => {
+      if(vehicle.plate.includes(searchText)) {
+        return vehicle;
+      }
+    });
+  }
+
+  loadData(event) {
+    this.vehicleService.getAllVehicles(null).subscribe(
       (data) => {
+        if(event) {
+          event.target.complete();
+        }
+
         this.vehicles = data.body;
-        console.log(this.vehicles)
+        this.showVehicles = this.vehicles;
+
         this.ready = true;
       }
     );

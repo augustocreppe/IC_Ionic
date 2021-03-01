@@ -21,7 +21,7 @@
   <div>
     <div id="result">
       <ion-item id="item" color="transparent" lines="none" button (click)="falarNome(owner.name)">
-        <ion-text>Nome: {{ owner.name.substring(0,12) }}<ion-text *ngIf="owner.email.length >= 13">...</ion-text></ion-text>
+        <ion-text>Nome: {{ owner.name.substring(0,12) }}<ion-text *ngIf="owner.name.length >= 13">...</ion-text></ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none">
         <ion-text>Nascimento: {{ owner.birthdate.substring(8,10) }}/{{ owner.birthdate.substring(5,7) }}/{{ owner.birthdate.substring(0,4) }}</ion-text>

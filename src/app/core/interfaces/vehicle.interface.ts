@@ -1,9 +1,9 @@
 export interface VehicleInterface {
-  id: number,
+  id?: number,
   plate: string,
   brand: string,
   model: string,
   colour: string,
-  active: boolean,
+  active?: boolean,
   ownerId: number
 }

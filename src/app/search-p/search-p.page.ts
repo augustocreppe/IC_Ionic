@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OwnerService } from '../core/services/owner.service';
 import { OwnerInterface } from '../core/interfaces/owner.interface';
-import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
@@ -18,7 +17,6 @@ export class SearchPPage implements OnInit {
   resp = false;
 
   constructor(
-    private loadingController: LoadingController,
     private ownerService: OwnerService,
     private router: Router,
     public alertController: AlertController

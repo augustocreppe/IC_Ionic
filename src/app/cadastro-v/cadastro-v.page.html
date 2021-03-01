@@ -8,10 +8,9 @@
 
 <ion-content>
   <div id="container">
-  <a id="title">Cadastro de Veículo</a><br><br>
-
-  <form [formGroup]="formCadV" (ngSubmit)="cadastrarVeiculo()" novalidate>
-    <div id="div_form">
+    <a id="title">Cadastro de Veículo</a><br><br>
+    <form [formGroup]="formCadV" (ngSubmit)="cadastrarVeiculo()" novalidate>
+      <div id="div_form">
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Placa</ion-label>
           <ion-input formControlName="plate" type="text" id="text_form" maxlength="7"></ion-input>
@@ -77,13 +76,12 @@
             Proprietário Inválido!
           </div>
         </span>
-    </div>
+      </div>
 
-    <ion-button id="button" type="submit" expand="block" size="large">
-      <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
-      Cadastrar Veículo
-    </ion-button>
-  </form>
-
+      <ion-button id="button" type="submit" expand="block" size="large">
+        <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
+        Cadastrar Veículo
+      </ion-button>
+    </form>
   </div>
 </ion-content>
