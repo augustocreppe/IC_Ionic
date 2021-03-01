@@ -65,7 +65,7 @@
   
         <ion-item id="item" color="transparent">
           <ion-label position="floating">Proprietário</ion-label>
-          <ion-select formControlName="owner" *ngIf="ready">
+          <ion-select formControlName="ownerId" *ngIf="ready">
             <ion-select-option *ngFor="let owner of owners" [value]="owner.id">{{owner.name}}</ion-select-option>
           </ion-select>
         </ion-item>

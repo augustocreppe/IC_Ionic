@@ -6,7 +6,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content *ngIf="ready">
   <ion-refresher slot="fixed" (ionRefresh)="loadData($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -33,7 +33,7 @@
         <ion-text>Cor: {{ vehicle.colour }}</ion-text>
       </ion-item>
       <ion-item id="item" color="transparent" lines="none" (click)="falarOwner(vehicle.brand)">
-        <ion-text>Proprietário: {{ vehicle.ownerId }}</ion-text>
+        <ion-text>Proprietário: {{ getOwnerName(vehicle.ownerId) }}<ion-text *ngIf="nameOwner.length >= 7">...</ion-text></ion-text>
       </ion-item>
       <ion-item id="item2" color="transparent" lines="none">
         __________________________ <br>

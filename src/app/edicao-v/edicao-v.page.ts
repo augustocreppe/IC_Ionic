@@ -4,6 +4,8 @@ import { VehicleService } from '../core/services/vehicle.service';
 import { VehicleInterface } from '../core/interfaces/vehicle.interface';
 import { LoadingController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
+import { OwnerService } from '../core/services/owner.service';
+import { OwnerInterface } from '../core/interfaces/owner.interface';
 
 @Component({
   selector: 'app-edicao-v',
@@ -14,6 +16,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EdicaoVPage implements OnInit {
   formEditV: FormGroup;
   isSubmitted = false;
+  owners: OwnerInterface[];
   vehicle: VehicleInterface;
   id: number;
   ready = false;
@@ -22,6 +25,7 @@ export class EdicaoVPage implements OnInit {
     public formBuilder: FormBuilder, 
     private loadingController: LoadingController,
     private vehicleService: VehicleService,
+    private ownerService: OwnerService,
     private router: Router,
     private route: ActivatedRoute
   ) { }
@@ -30,6 +34,12 @@ export class EdicaoVPage implements OnInit {
     this.route.params.subscribe(params => {
       this.id = params['id']; 
     });
+
+    this.ownerService.getAllOwners(null).subscribe(
+      (data) => {
+        this.owners = data.body;
+      }
+    );
 
     this.vehicleService.getVehicleWithId(this.id).subscribe(
       (data) => {

@@ -4,6 +4,9 @@ import { VehicleInterface } from '../core/interfaces/vehicle.interface';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 
+import { OwnerService } from '../core/services/owner.service';
+import { OwnerInterface } from '../core/interfaces/owner.interface';
+
 @Component({
   selector: 'app-search-v',
   templateUrl: './search-v.page.html',
@@ -16,10 +19,15 @@ export class SearchVPage implements OnInit {
   ready = false;
   resp = false;
 
+  owners: OwnerInterface[] = [];
+  nameOwner: string;
+
   constructor(
     private vehicleService: VehicleService,
     private router: Router,
-    public alertController: AlertController
+    public alertController: AlertController,
+
+    private ownerService: OwnerService,
   ) { }
 
   ngOnInit() { 
@@ -28,7 +36,6 @@ export class SearchVPage implements OnInit {
 
   searchVehicle(event) {
     const searchText = event.target.value;
-
     this.showVehicles = this.vehicles.filter(vehicle => {
       if(vehicle.plate.includes(searchText)) {
         return vehicle;
@@ -46,9 +53,22 @@ export class SearchVPage implements OnInit {
         this.vehicles = data.body;
         this.showVehicles = this.vehicles;
 
-        this.ready = true;
+        this.ownerService.getAllOwners(null).subscribe(
+          (data) => {
+            this.owners = data.body;
+
+            this.ready = true;
+          }
+        );
       }
     );
+  }
+
+  getOwnerName(ownerId: number) {
+    const owner = this.owners.find(owner => owner.id === ownerId);
+
+    this.nameOwner = owner.name.substring(0,7);
+    return this.nameOwner;
   }
 
   falarBrand(brand) {
@@ -63,8 +83,8 @@ export class SearchVPage implements OnInit {
     alert("Cor: " + colour);
   }
 
-  falarOwner(prop) {
-    alert("Proprietário: " + prop);
+  falarOwner(owner) {
+    alert("Proprietário: " + owner);
   }
 
   excluirVeiculo(id){
