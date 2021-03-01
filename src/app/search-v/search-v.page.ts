@@ -1,23 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from '../core/services/vehicle.service';
 import { VehicleInterface } from '../core/interfaces/vehicle.interface';
-import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-search-v',
   templateUrl: './search-v.page.html',
   styleUrls: ['./search-v.page.scss'],
 })
+
 export class SearchVPage implements OnInit {
-  vehicles: VehicleInterface[];
+  vehicles: VehicleInterface[] = [];
   showVehicles: VehicleInterface[] = [];
   ready = false;
+  resp = false;
 
   constructor(
-    private loadingController: LoadingController,
     private vehicleService: VehicleService,
-    private router: Router
+    private router: Router,
+    public alertController: AlertController
   ) { }
 
   ngOnInit() { 
@@ -47,5 +49,43 @@ export class SearchVPage implements OnInit {
         this.ready = true;
       }
     );
+  }
+
+  falarBrand(brand) {
+    alert("Marca: " + brand);
+  }
+
+  falarModel(model) {
+    alert("Modelo: " + model);
+  }
+
+  falarColour(colour) {
+    alert("Cor: " + colour);
+  }
+
+  falarOwner(prop) {
+    alert("Proprietário: " + prop);
+  }
+
+  excluirVeiculo(id){
+    this.alertController.create({
+      header: `Confirmação de Exclusão`,
+      message: 'Você deseja excluir este veículo?',
+      buttons: [{
+        text: 'Não',
+        role: 'cancel',
+      }, {
+        text: 'Sim',
+        handler: () => {
+          this.vehicleService.deactivateVehicle(id).subscribe(
+            (res) => { alert("Exclusão feita com sucesso!"), this.router.navigate(['/menu']);  }, 
+            (err) => console.log(err)
+          );
+        }
+      }
+      ]
+    }).then(res => {
+      res.present();
+    });
   }
 }

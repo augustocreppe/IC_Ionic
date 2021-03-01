@@ -13,34 +13,34 @@
 
   <div id="div_space"></div>
 
-  <div *ngFor="let vehicle of vehicles" id="div_results">
-  <div *ngIf="searchText">
+  <div *ngFor="let vehicle of showVehicles" id="div_results">
+  <div>
     <div id="result">
       <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Placa: {{ vehicle.name }}</ion-text>
+        <ion-text>Placa: {{ vehicle.plate }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none">
+      <ion-item id="item" color="transparent" lines="none" button (click)="falarBrand(vehicle.brand)">
         <ion-text>Marca: {{ vehicle.brand }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Modelo: {{ vehicle.model }}}</ion-text>
+      <ion-item id="item" color="transparent" lines="none" (click)="falarModel(vehicle.model)">
+        <ion-text>Modelo: {{ vehicle.model }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none">
+      <ion-item id="item" color="transparent" lines="none" (click)="falarColour(vehicle.colour)">
         <ion-text>Cor: {{ vehicle.colour }}</ion-text>
       </ion-item>
-      <ion-item id="item" color="transparent" lines="none">
-        <ion-text>Proprietário: {{ vehicle.owner }}</ion-text>
+      <ion-item id="item" color="transparent" lines="none" (click)="falarOwner(vehicle.brand)">
+        <ion-text>Proprietário: {{ vehicle.ownerId }}</ion-text>
       </ion-item>
       <ion-item id="item2" color="transparent" lines="none">
         __________________________ <br>
       </ion-item>
 
-      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-p/{{ vehicle.id }}">
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-v/{{ vehicle.id }}">
         <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
         Editar
       </ion-button>
 
-      <ion-button id="button2" expand="block" size="large" routerLink="/exclusao-p">
+      <ion-button id="button2" expand="block" size="large" (click)="excluirVeiculo(vehicle.id)">
         <ion-icon id="icon2" slot="start" name="trash-outline"></ion-icon>
         Excluir
       </ion-button>

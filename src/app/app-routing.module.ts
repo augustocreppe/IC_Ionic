@@ -43,7 +43,7 @@ const routes: Routes = [
     loadChildren: () => import('./edicao-p/edicao-p.module').then( m => m.EdicaoPPageModule)
   },
   {
-    path: 'edicao-v',
+    path: 'edicao-v/:id',
     loadChildren: () => import('./edicao-v/edicao-v.module').then( m => m.EdicaoVPageModule)
   },
   {
