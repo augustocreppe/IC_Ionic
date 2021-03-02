@@ -61,8 +61,10 @@ export class CadastroVPage implements OnInit {
     }).then(anim => {
       anim.present();
 
+      const plate: string = this.formCadV.get('plate').value;
+
       const data: CreateVehicleInterface = {
-        plate: this.formCadV.get('plate').value,
+        plate: plate.toUpperCase(),
         brand: this.formCadV.get('brand').value,
         model: this.formCadV.get('model').value,
         colour: this.formCadV.get('colour').value,

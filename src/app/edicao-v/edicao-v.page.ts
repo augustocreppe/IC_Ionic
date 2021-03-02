@@ -63,10 +63,13 @@ export class EdicaoVPage implements OnInit {
   }
 
   alterarVeiculo() {
-    this.isSubmitted = true;
+    // this.isSubmitted = true;
+
     if (!this.formEditV.valid) {
       return false;
     } 
+
+    // return;
     
     const loading = this.loadingController.create({
       message: 'Salvando os dados...'
@@ -74,19 +77,25 @@ export class EdicaoVPage implements OnInit {
       anim.present();
 
       const data: VehicleInterface = {
-        plate: this.formEditV.get('name').value,
+        plate: this.formEditV.get('plate').value,
         brand: this.formEditV.get('brand').value,
         model: this.formEditV.get('model').value,
         colour: this.formEditV.get('colour').value,
-        ownerId: this.formEditV.get('owner').value,
+        ownerId: this.formEditV.get('ownerId').value
       }
-
+      
       this.vehicleService.editVehicle(this.id, data).subscribe(
-        (res) => { alert("Edição feita com sucesso!"), this.router.navigate(['/menu']); }, 
-        (err) => console.log(err)
+        (res) => { 
+          anim.dismiss();
+          alert("Edição feita com sucesso!")
+          this.router.navigate(['/menu']);
+        }, (err) => {
+          anim.dismiss();
+          console.log(err)
+        }
       );
 
-      anim.dismiss();
+      
     });
   }
 }
