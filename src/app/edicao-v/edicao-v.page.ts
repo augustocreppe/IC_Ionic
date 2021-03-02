@@ -15,7 +15,6 @@ import { OwnerInterface } from '../core/interfaces/owner.interface';
 
 export class EdicaoVPage implements OnInit {
   formEditV: FormGroup;
-  isSubmitted = false;
   owners: OwnerInterface[];
   vehicle: VehicleInterface;
   id: number;
@@ -63,13 +62,9 @@ export class EdicaoVPage implements OnInit {
   }
 
   alterarVeiculo() {
-    // this.isSubmitted = true;
-
     if (!this.formEditV.valid) {
       return false;
-    } 
-
-    // return;
+    }
     
     const loading = this.loadingController.create({
       message: 'Salvando os dados...'
@@ -94,8 +89,6 @@ export class EdicaoVPage implements OnInit {
           console.log(err)
         }
       );
-
-      
     });
   }
 }

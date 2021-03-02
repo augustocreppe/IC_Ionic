@@ -80,11 +80,15 @@ export class EdicaoPPage implements OnInit {
       }
 
       this.ownerService.editOwner(this.id, data).subscribe(
-        (res) => { alert("Edição feita com sucesso!"), this.router.navigate(['/menu']); }, 
-        (err) => console.log(err)
+        (res) => { 
+          anim.dismiss();
+          alert("Edição feita com sucesso!")
+          this.router.navigate(['/menu']); 
+        }, (err) => {
+          anim.dismiss();
+          console.log(err)
+        }
       );
-
-      anim.dismiss();
     });
   }
 }
