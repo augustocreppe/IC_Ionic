@@ -8,6 +8,11 @@
 
 <ion-content>
   <div id="container">
+    <ion-text id="title"> Selecione a placa: </ion-text>
+
+    <img id="example" src="../../assets/placa_exemplo.png">
+
+    <ion-text id="text_line">__________________</ion-text><br><br>
 
     <image-cropper
         [imageBase64]="image"
@@ -17,9 +22,8 @@
         [resizeToWidth]="1024"
         format="jpg"
         (imageCropped)="imageCropped($event)"
+        id="image_cropper"
     ></image-cropper>
-
-    <ion-img [src]="croppedImage.base64" id="crop_im"></ion-img>
 
     <ion-button id="button" expand="block" size="large" (click)="captureImage()">
       <ion-icon id="icon1" slot="start" name="camera-outline"></ion-icon>
@@ -29,20 +33,6 @@
     <ion-button id="button" expand="block" size="large" (click)="recognizeImage()" [disabled]="!image || !workerReady">
       <ion-icon id="icon2" slot="start" name="car-outline"></ion-icon>
       Verificar Veículo
-    </ion-button>
-
-    <div id="div_ocr">
-    <ion-card *ngIf="workerReady && captureProgress > 0" id="card">
-      <ion-card-header>
-        <ion-card-title>
-          Progresso da Captura: {{ captureProgress }}%
-        </ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        {{ ocrResult }}
-      </ion-card-content>
-    </ion-card>
-    </div>
-    
+    </ion-button>    
   </div>
 </ion-content>

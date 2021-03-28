@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./camera/camera.module').then( m => m.CameraPageModule)
   },
   {
+    path: 'result/:placa',
+    loadChildren: () => import('./result/result.module').then( m => m.ResultPageModule)
+  },
+  {
     path: 'digitar',
     loadChildren: () => import('./digitar/digitar.module').then( m => m.DigitarPageModule)
   },
@@ -27,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./cadastro-p/cadastro-p.module').then( m => m.CadastroPPageModule)
   },
   {
-    path: 'cadastro-v',
+    path: 'cadastro-v/:placa',
     loadChildren: () => import('./cadastro-v/cadastro-v.module').then( m => m.CadastroVPageModule)
   },
   {

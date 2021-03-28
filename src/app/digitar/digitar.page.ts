@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-digitar',
@@ -10,8 +11,12 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 export class DigitarPage implements OnInit {
   formPlaca: FormGroup;
   isSubmitted = false;
+  placa = "ABC1234";
 
-  constructor(public formBuilder: FormBuilder) { }
+  constructor(
+    public formBuilder: FormBuilder, 
+    private router: Router,
+  ) { }
 
   ngOnInit() {
     this.formPlaca = this.formBuilder.group({
@@ -19,7 +24,7 @@ export class DigitarPage implements OnInit {
                   Validators.minLength(7), 
                   Validators.maxLength(7), 
                   Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')
-              ]],
+            ]],
     })
   }
 
@@ -33,7 +38,7 @@ export class DigitarPage implements OnInit {
       return false;
     } 
     else {
-      console.log(this.formPlaca.value);
+      this.router.navigate(['/result/',this.formPlaca.value.placa]);
     }
   }
 }

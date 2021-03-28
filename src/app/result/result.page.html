@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container" *ngIf="ready">
+    <div *ngIf="myVehicle != undefined">
+    <ion-text id="title">Veículo Verificado</ion-text><br><br>
+
+    <div id="div_form">
+      <ion-item id="item" color="transparent">
+        <ion-label position="stacked">Placa:</ion-label>
+        <ion-input type="text" id="text_form" readonly>{{ myVehicle.plate }}</ion-input>
+      </ion-item>
+
+      <ion-item id="item" color="transparent">
+        <ion-label position="stacked">Marca:</ion-label>
+        <ion-input type="text" id="text_form" readonly>{{ myVehicle.brand }}</ion-input>
+      </ion-item>
+
+      <ion-item id="item" color="transparent">
+        <ion-label position="stacked">Modelo:</ion-label>
+        <ion-input type="text" id="text_form" readonly>{{ myVehicle.model }}</ion-input>
+      </ion-item>
+
+      <ion-item id="item" color="transparent">
+        <ion-label position="stacked">Cor:</ion-label>
+        <ion-input type="text" id="text_form" readonly>{{ myVehicle.colour }}</ion-input>
+      </ion-item>
+
+      <ion-item id="item" color="transparent">
+        <ion-label position="stacked">Proprietário:</ion-label>
+        <ion-input type="text" id="text_form" readonly>{{ myVehicle.ownerId }}</ion-input>
+      </ion-item>
+    </div>
+
+    <div id="div_buttons">
+      <ion-button id="button1" expand="block" size="large" routerLink="/edicao-v/{{ myVehicle.id }}">
+        <ion-icon id="icon1" slot="start" name="create-outline"></ion-icon>
+        Editar
+      </ion-button>
+  
+      <ion-button id="button2" expand="block" size="large" (click)="deleteVehicle(myVehicle.id)">
+        <ion-icon id="icon2" slot="start" name="trash-outline"></ion-icon>
+        Excluir
+      </ion-button>
+    </div>
+    <br><br><br>
+    </div>
+
+    <div *ngIf="myVehicle == undefined">
+    <br><br><br><br><br><br><br><br>
+    <ion-text id="title2">Veículo não encontrado!</ion-text><br><br>
+
+    <ion-button id="button3" expand="block" size="large" routerLink="/cadastro-v/{{ placa }}">
+      <ion-icon id="icon" slot="start" name="car-outline"></ion-icon>
+      Cadastrar Veículo
+    </ion-button>
+
+    <br><br><ion-text>Placa: {{ placa }}</ion-text>
+    </div>
+  </div>
+</ion-content>

@@ -17,7 +17,7 @@ export class CameraPage implements OnInit {
 
   image = '';
   imageChangedEvent = '';
-  croppedImage = '';
+  croppedImage: any = null;
   captureProgress = 0;
   ocrResult = '';
 
@@ -35,7 +35,6 @@ export class CameraPage implements OnInit {
       });
   
       this.image = image.dataUrl;
-      console.log('image: ', this.image);
     }
     catch {
       this.router.navigate(['/menu']);
@@ -66,25 +65,23 @@ export class CameraPage implements OnInit {
       });
   
       this.image = image.dataUrl;
-      console.log('image: ', this.image);
     }
     catch {
       this.router.navigate(['/menu']);
     }
   }
 
-  async recognizeImage() {
-    const result = await this.worker.recognize(this.image);
-    this.ocrResult = result.data.text;
-  }
-
   fileChangeEvent(event: any): void {
     this.imageChangedEvent = event;
   }
 
-  imageCropped(image: string) {
+  imageCropped(image: any) {
     this.croppedImage = image;
-    console.log("croppedImage:", this.croppedImage);
   }
   
+  async recognizeImage() {
+    const result = await this.worker.recognize(this.croppedImage.base64);
+    this.ocrResult = result.data.text;
+    this.router.navigate(['/result/',this.ocrResult]);
+  }
 }

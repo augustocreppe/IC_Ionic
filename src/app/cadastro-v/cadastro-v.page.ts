@@ -6,7 +6,7 @@ import { CreateVehicleInterface } from '../core/interfaces/create-vehicle.interf
 import { LoadingController } from '@ionic/angular';
 import { OwnerService } from '../core/services/owner.service';
 import { OwnerInterface } from '../core/interfaces/owner.interface';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cadastro-v',
@@ -19,17 +19,26 @@ export class CadastroVPage implements OnInit {
   isSubmitted = false;
   owners: OwnerInterface[];
   vehicle: VehicleInterface;
+  placa: string;
   ready = false;
 
   constructor(
+    private router: Router,
+    private route: ActivatedRoute,
     public formBuilder: FormBuilder,
     private loadingController: LoadingController,
     private vehicleService: VehicleService,
-    private ownerService: OwnerService,
-    private router: Router
+    private ownerService: OwnerService
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.placa = params['placa'];
+
+      if(this.placa == '0')
+        this.placa = '';
+    });
+
     this.ownerService.getAllOwners(null).subscribe(
       (data) => {
         this.owners = data.body;
@@ -38,7 +47,7 @@ export class CadastroVPage implements OnInit {
     );
 
     this.formCadV = this.formBuilder.group({
-      plate:  ['', [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
+      plate:  [this.placa, [Validators.required, Validators.minLength(7), Validators.maxLength(7), Validators.pattern('^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$')]],
       brand:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       model:  ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       colour: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],

@@ -8,6 +8,8 @@
 
 <ion-content>
   <div id="container" *ngIf="ready">
+    <ion-text id="title">Editar Pessoa</ion-text><br><br>
+
     <form [formGroup]="formEditP" (ngSubmit)="alterarPessoa()" novalidate>
       <div id="div_form">
         <ion-item id="item" color="transparent">

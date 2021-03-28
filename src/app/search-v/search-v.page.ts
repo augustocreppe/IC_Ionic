@@ -26,7 +26,7 @@ export class SearchVPage implements OnInit {
     private vehicleService: VehicleService,
     private router: Router,
     public alertController: AlertController,
-
+    
     private ownerService: OwnerService,
   ) { }
 
