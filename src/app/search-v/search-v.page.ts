@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VehicleService } from '../core/services/vehicle.service';
-import { VehicleInterface } from '../core/interfaces/vehicle.interface';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { VehicleService } from '../core/services/vehicle.service';
+import { VehicleInterface } from '../core/interfaces/vehicle.interface';
 import { OwnerService } from '../core/services/owner.service';
 import { OwnerInterface } from '../core/interfaces/owner.interface';
 
@@ -16,11 +15,9 @@ import { OwnerInterface } from '../core/interfaces/owner.interface';
 export class SearchVPage implements OnInit {
   vehicles: VehicleInterface[] = [];
   showVehicles: VehicleInterface[] = [];
-  ready = false;
-  resp = false;
-
   owners: OwnerInterface[] = [];
   nameOwner: string;
+  ready = false;
 
   constructor(
     private vehicleService: VehicleService,

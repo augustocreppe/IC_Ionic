@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 import { Router, ActivatedRoute } from '@angular/router';
 import { VehicleService } from '../core/services/vehicle.service';
 import { VehicleInterface } from '../core/interfaces/vehicle.interface';
-import { AlertController } from '@ionic/angular';
+import { OwnerService } from '../core/services/owner.service';
+import { OwnerInterface } from '../core/interfaces/owner.interface';
 
 @Component({
   selector: 'app-result',
@@ -12,15 +14,18 @@ import { AlertController } from '@ionic/angular';
 
 export class ResultPage implements OnInit {
   vehicle: VehicleInterface[];
+  owner: OwnerInterface;
   placa: string;
   myVehicle: VehicleInterface;
+  myOwner: string;
   ready = false;
 
   constructor(
+    public alertController: AlertController,
     private router: Router,
     private route: ActivatedRoute,
     private vehicleService: VehicleService,
-    public alertController: AlertController
+    private ownerService: OwnerService
   ) {}
 
   ngOnInit() {
@@ -32,7 +37,15 @@ export class ResultPage implements OnInit {
       (data) => {
         this.vehicle = data.body;
         this.myVehicle = this.vehicle[0];
-        this.ready = true;
+
+        this.ownerService.getOwnerWithId(this.myVehicle.ownerId).subscribe(
+          (data) => {
+            this.owner = data.body;
+            this.myOwner = this.owner.name;
+
+            this.ready = true;
+          }
+        );
       }
     );
   }

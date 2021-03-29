@@ -23,10 +23,10 @@ export class EdicaoVPage implements OnInit {
   constructor(
     public formBuilder: FormBuilder, 
     private loadingController: LoadingController,
-    private vehicleService: VehicleService,
-    private ownerService: OwnerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private vehicleService: VehicleService,
+    private ownerService: OwnerService
   ) { }
 
   ngOnInit() {
