@@ -38,14 +38,21 @@ export class ResultPage implements OnInit {
         this.vehicle = data.body;
         this.myVehicle = this.vehicle[0];
 
-        this.ownerService.getOwnerWithId(this.myVehicle.ownerId).subscribe(
-          (data) => {
-            this.owner = data.body;
-            this.myOwner = this.owner.name;
-
-            this.ready = true;
-          }
-        );
+        if(this.myVehicle != undefined)
+        {
+          this.ownerService.getOwnerWithId(this.myVehicle.ownerId).subscribe(
+            (data) => {
+              this.owner = data.body;
+              this.myOwner = this.owner.name;
+  
+              this.ready = true;
+            }
+          );
+        }
+        else if(this.myVehicle == undefined)
+        {
+          this.ready = true;
+        }
       }
     );
   }

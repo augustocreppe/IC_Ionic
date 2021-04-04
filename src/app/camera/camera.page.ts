@@ -82,6 +82,20 @@ export class CameraPage implements OnInit {
   async recognizeImage() {
     const result = await this.worker.recognize(this.croppedImage.base64);
     this.ocrResult = result.data.text;
-    this.router.navigate(['/result/',this.ocrResult]);
+
+    const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|[^a-z A-Z 0-9])/gm, '');
+    const regex = '^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$';
+    
+    const match = sanitized.match(regex);
+
+    if(match) 
+    {
+      this.router.navigate(['/result/', sanitized]);
+    } 
+    else 
+    {
+      //this.router.navigate(['/result/', sanitized]);
+      console.log("ERROR!");
+    }
   }
 }
