@@ -83,7 +83,9 @@ export class CameraPage implements OnInit {
     const result = await this.worker.recognize(this.croppedImage.base64);
     this.ocrResult = result.data.text;
 
-    const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|[^a-z A-Z 0-9])/gm, '');
+    console.log("RESULTADO BRUTO!: ", this.ocrResult);
+
+    const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|' '|[^a-z A-Z 0-9])/gm, '');
     const regex = '^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$';
     
     const match = sanitized.match(regex);
@@ -95,7 +97,7 @@ export class CameraPage implements OnInit {
     else 
     {
       //this.router.navigate(['/result/', sanitized]);
-      console.log("ERROR!");
+      console.log("RESULTADO LIMPO: ", sanitized);
     }
   }
 }
