@@ -1,19 +1,38 @@
 #title {
   font-weight: bold;
   text-align: center;
-  font-size: xx-large;
+  font-size: 1.3cm;
+  color: white;
+}
+
+#colour {
+  margin-left: -20px;
+  padding-top: 10px;
+  height: 110px;
+  width: 360px;
+  background-color: #3880ff;
+}
+
+#subtitle {
+  font-weight: normal;
+  text-align: center;
+  font-size: 0.56cm;
+  color: white;  
 }
 
 #container {
-  position: absolute;
-  padding-top: 25px;
   padding-left: 20px;
   padding-right: 20px;
-  text-align: center;
+
+  margin-top: 40px;
+  margin-bottom: 20px;
+
+  align-content: center;
+  text-align: center
 }
 
 #button1 {
-  margin-top: 400px;
+  margin-top: 0px;
   width: 316px;
 }
 
@@ -30,4 +49,9 @@
 #icon2 {
   margin-left: -100px;
   margin-right: 85px;
+}
+
+#img_vigilauto {
+  height: 300px;
+  margin-top: 30px;
 }
