@@ -78,12 +78,13 @@ export class CameraPage implements OnInit {
   imageCropped(image: any) {
     this.croppedImage = image;
   }
-  
+
   async recognizeImage() {
+
     const result = await this.worker.recognize(this.croppedImage.base64);
     this.ocrResult = result.data.text;
 
-    console.log("RESULTADO BRUTO!: ", this.ocrResult);
+    console.log("Resultado Bruto: ", this.ocrResult);
 
     const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|' '|[^a-z A-Z 0-9])/gm, '');
     const regex = '^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$';
@@ -92,12 +93,13 @@ export class CameraPage implements OnInit {
 
     if(match) 
     {
+      console.log("Resultado Limpo: ", sanitized);
       this.router.navigate(['/result/', sanitized]);
     } 
     else 
     {
+      console.log("Resultado Limpo: ", sanitized);
       //this.router.navigate(['/result/', sanitized]);
-      console.log("RESULTADO LIMPO: ", sanitized);
     }
   }
 }
