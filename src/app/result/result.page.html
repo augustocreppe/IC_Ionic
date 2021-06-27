@@ -53,15 +53,16 @@
     </div>
 
     <div *ngIf="myVehicle == undefined">
-    <br><br><br><br><br><br><br><br>
+
+    <br><br><br><br><br><br>
     <ion-text id="title2">Veículo não encontrado!</ion-text><br><br>
+    <ion-text id="title3">Placa: {{ placa }}</ion-text><br><br>
 
     <ion-button id="button3" expand="block" size="large" routerLink="/cadastro-v/{{ placa }}">
       <ion-icon id="icon" slot="start" name="car-outline"></ion-icon>
       Cadastrar Veículo
     </ion-button>
 
-    <br><br><ion-text>Placa: {{ placa }}</ion-text>
     </div>
   </div>
 </ion-content>

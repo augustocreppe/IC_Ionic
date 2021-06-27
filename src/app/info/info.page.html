@@ -7,38 +7,63 @@
 </ion-header>
 
 <ion-content>
-  <div id="container">
-    <ion-title id="title">Sobre o Aplicativo</ion-title>
+<ion-slides pager="true" [options]="slideOpts" id="ion-slides">
+    <ion-slide>
+      <div id="container">
+        <ion-title id="title">Sobre o Aplicativo</ion-title>
+        
+        <div id="div_text">
+        <ion-text id="text">
+          &nbsp; O [aplicativo] é um projeto de Iniciação Científica com ênfase no OCR (reconhecimento ótico de caracteres).
+          <br>
+
+          <img id="img_pibic" src="../../assets/logo_pibic.png">
+
+          <br>
+          &nbsp; Esta aplicação compreende um sistema de monitoramento de veículos pelo qual se verificam automóveis pelo 
+          reconhecimento ótico de suas placas.
+          <br><br>
+          &nbsp; É possível, também, armazenar os dados dos carros e de seus proprietários de maneira local, podendo-se 
+          adicionar, editar e excluir conteúdos. 
+        </ion-text>
+        </div>
     
-    <div id="div_text">
-    <ion-text id="text">
-      &nbsp; O (aplicativo) é um projeto de Iniciação Científica com ênfase no reconhecimento ótico de caracteres.
-      <br>
-      &nbsp; A aplicação é um sistema de monitoramento de veículos que verifica automóveis 
-      por meio do reconhecimento ótico de placas.
-    </ion-text>
-    </div>
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <div id="container">
+        <ion-title id="title">Desenvolvedores</ion-title>
+    
+        <div id="div_text">
+          <ion-text id="text">
+            &nbsp; O [aplicativo] foi desenvolvido pelo aluno bolsista da Iniciação Científica, com o auxílio de seu orientador.
+            <br>
+          </ion-text>
+        </div>
 
-    <img id="img_pibic" src="../../assets/logo_pibic.png">
+        <br>
+        <div id="div_nome">
+        <ion-text>
+          <b>Aluno Bolsista:</b> <br>
+          Augusto Zanardi Creppe <br>
+          <a id="mail_icon"><ion-icon id="icon" slot="start" name="mail-outline"></ion-icon></a> augusto.creppe@unesp.br
+        </ion-text>
+        </div>
+    
+        <img id="img_cti" src="../../assets/logo_cti.png">
 
-    <div id="div_nome">
-    <ion-text>
-      <b>Aluno Bolsista:</b> <br>
-      Augusto Zanardi Creppe <br>
-      <a id="mail_icon"><ion-icon id="icon" slot="start" name="mail-outline"></ion-icon></a> augusto.creppe@unesp.br
-    </ion-text>
-    </div>
-
-    <div id="div_nome">
-    <ion-text>
-      <b>Orientador:</b> <br>
-      Prof. Dr. A. Nilceu Marana <br>
-      <a id="mail_icon"><ion-icon id="icon" slot="start" name="mail-outline"></ion-icon></a> nilceu.marana@unesp.br
-    </ion-text>
-    </div>
-
-    <img id="img_cti" src="../../assets/logo_cti.png">
-    <img id="img_unesp" src="../../assets/logo_unesp.png">
-
-  </div>
+        <br>
+        <div id="div_nome">
+        <ion-text>
+          <b>Orientador:</b> <br>
+          Prof. Dr. A. Nilceu Marana <br>
+          <a id="mail_icon"><ion-icon id="icon" slot="start" name="mail-outline"></ion-icon></a> nilceu.marana@unesp.br
+        </ion-text>
+        </div>
+    
+        <img id="img_unesp" src="../../assets/logo_unesp.png">
+        <br>
+      </div>
+    </ion-slide>
+</ion-slides>
 </ion-content>

@@ -1,3 +1,7 @@
+#ion-slides {
+    height: 100%;
+}
+
 #container {
     position: absolute;
     padding-top: 20px;
@@ -7,6 +11,7 @@
 }
 
 #title {
+    margin-top: -40px;
     font-weight: bold;
     text-align: center;
     font-size: xx-large;
@@ -26,7 +31,8 @@
     width: 175px;
     height: 70px;
     margin-top: 15px;
-    margin-left: 145px;
+    margin-left: 130px;
+    margin-bottom: 15px;
 }
 
 #div_nome {
@@ -46,11 +52,12 @@
     height: 60px;
     width: 115.2px;
     margin-top: 20px;
+    margin-left: 180px;
 }
 
 #img_unesp {
     height: 60px;
     width: 180px;
     margin-top: 20px;
-    margin-left: 25px;
+    margin-left: 120px;
 }
