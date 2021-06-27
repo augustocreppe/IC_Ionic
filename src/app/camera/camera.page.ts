@@ -20,6 +20,96 @@ export class CameraPage implements OnInit {
   croppedImage: any = null;
   captureProgress = 0;
   ocrResult = '';
+  binaryData = '';
+
+  red = 0.2126;
+  green = 0.7152;
+  blue = 0.0722;
+
+  toGrayscale(context, w, h) {
+    var imageData = context.getImageData(0, 0, w, h);
+    var data = imageData.data;
+    
+    for(var i = 0; i < data.length; i += 4) {
+      var brightness = this.red * data[i] + this.green * data[i + 1] + this.blue * data[i + 2];
+      // red
+      data[i] = brightness;
+      // green
+      data[i + 1] = brightness;
+      // blue
+      data[i + 2] = brightness;
+    }
+    
+    // overwrite original image
+    context.putImageData(imageData, 0, 0);
+  };
+
+  hist(context, w, h) {
+    var imageData = context.getImageData(0, 0, w, h);
+    var data = imageData.data;
+    var brightness;
+    var brightness256Val;
+    var histArray = Array.apply(null, new Array(256)).map(Number.prototype.valueOf,0);
+      
+    for (var i = 0; i < data.length; i += 4) {
+      brightness = this.red * data[i] + this.green * data[i + 1] + this.blue * data[i + 2];
+      brightness256Val = Math.floor(brightness);
+      histArray[brightness256Val] += 1;
+    }
+      
+    return histArray;
+  };
+
+  otsu(histogram, total) {
+    var sum = 0;
+    for (var i = 1; i < 256; ++i)
+        sum += i * histogram[i];
+    var sumB = 0;
+    var wB = 0;
+    var wF = 0;
+    var mB;
+    var mF;
+    var max = 0.0;
+    var between = 0.0;
+    var threshold1 = 0.0;
+    var threshold2 = 0.0;
+    for (var i = 0; i < 256; ++i) {
+        wB += histogram[i];
+        if (wB == 0)
+            continue;
+        wF = total - wB;
+        if (wF == 0)
+            break;
+        sumB += i * histogram[i];
+        mB = sumB / wB;
+        mF = (sum - sumB) / wF;
+        between = wB * wF * Math.pow(mB - mF, 2);
+        if ( between >= max ) {
+            threshold1 = i;
+            if ( between > max ) {
+                threshold2 = i;
+            }
+            max = between;            
+        }
+    }
+    return ( threshold1 + threshold2 ) / 2.0;
+  };
+
+  binarize(threshold, context, w, h) {
+    var imageData = context.getImageData(0, 0, w, h);
+    var data = imageData.data;
+    var val;
+      
+    for(var i = 0; i < data.length; i += 4) {
+      var brightness = this.red * data[i] + this.green * data[i + 1] + this.blue * data[i + 2];
+      val = ((brightness > threshold) ? 255 : 0);
+      data[i] = val;
+      data[i + 1] = val;
+      data[i + 2] = val;
+     }
+    
+    context.putImageData(imageData, 0, 0);
+  };
 
   constructor(private router: Router) { 
     this.loadWorker();
@@ -79,8 +169,29 @@ export class CameraPage implements OnInit {
     this.croppedImage = image;
   }
 
-  async recognizeImage() {
+  handleOnLoad(canvas, ctx, img) {
+    const w = img.width, h = img.height;
+    canvas.height = h;     
+    canvas.width = w;       
+    ctx.drawImage(img, 0, 0);
+    this.toGrayscale(ctx, w, h);
+    const histogram = this.hist(ctx, w, h);
+    const threshold = this.otsu(histogram, w*h);
+    this.binarize(threshold, ctx, w, h);
+  }
 
+  async recognizeImage() {
+    const canvas = document.getElementById('cancan') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+    const img = new Image;
+    
+    img.src = this.croppedImage.base64;
+    img.onload = (event) => this.handleOnLoad(canvas, ctx, img);
+
+    this.binaryData = canvas.toDataURL();
+    console.log('BINARY DATA: ', this.binaryData);
+
+    /*
     const result = await this.worker.recognize(this.croppedImage.base64);
     this.ocrResult = result.data.text;
 
@@ -100,6 +211,6 @@ export class CameraPage implements OnInit {
     {
       console.log("Resultado Limpo: ", sanitized);
       //this.router.navigate(['/result/', sanitized]);
-    }
+    }*/
   }
 }
