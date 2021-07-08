@@ -181,25 +181,13 @@ export class CameraPage implements OnInit {
   }
 
   async recognizeImage() {
-    const canvas = document.getElementById('cancan') as HTMLCanvasElement;
-    const ctx = canvas.getContext('2d');
-    const img = new Image;
-    
-    img.src = this.croppedImage.base64;
-    img.onload = (event) => this.handleOnLoad(canvas, ctx, img);
-
-    this.binaryData = canvas.toDataURL();
-    console.log('BINARY DATA: ', this.binaryData);
-
-    /*
     const result = await this.worker.recognize(this.croppedImage.base64);
     this.ocrResult = result.data.text;
 
     console.log("Resultado Bruto: ", this.ocrResult);
 
-    const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|' '|[^a-z A-Z 0-9])/gm, '');
+    const sanitized = this.ocrResult.replace(/(\r\n|\n|\r|' '|[^a-z A-Z 0-9])/gm,'');
     const regex = '^[a-zA-Z]{3}[0-9]{1}[a-zA-Z0-9]{1}[0-9]{2}$';
-    
     const match = sanitized.match(regex);
 
     if(match) 
@@ -211,6 +199,20 @@ export class CameraPage implements OnInit {
     {
       console.log("Resultado Limpo: ", sanitized);
       //this.router.navigate(['/result/', sanitized]);
-    }*/
+    }
+  }
+
+  binarizeImage() {
+    const canvas = document.getElementById('cancan') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d');
+    const img = new Image;
+    
+    img.src = this.croppedImage.base64;
+    img.onload = (event) => this.handleOnLoad(canvas, ctx, img);
+    this.binaryData = canvas.toDataURL();
+
+    this.croppedImage.base64 = this.binaryData;
+
+    setTimeout(() => {  this.recognizeImage(); }, 500);
   }
 }
