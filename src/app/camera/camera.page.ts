@@ -94,7 +94,7 @@ export class CameraPage implements OnInit {
   }
 
   async recognizeImage() {
-    const binarized = await this.binarizeImage(this.croppedImage.base64);
+    const binarized = await this.handlePreprocessImage(this.croppedImage.base64);
 
     const result = await this.worker.recognize(binarized);
     this.ocrResult = result.data.text;
@@ -130,7 +130,7 @@ export class CameraPage implements OnInit {
     }
   }
 
-  async binarizeImage(image) {
+  async handlePreprocessImage(image) {
     const canvas = document.getElementById('cancan') as HTMLCanvasElement;
     const ctx = canvas.getContext('2d');
     const img = new Image;
@@ -144,10 +144,12 @@ export class CameraPage implements OnInit {
 
   preprocessImage(canvas) {
     const processedImageData = canvas.getContext('2d').getImageData(0,0,canvas.width, canvas.height);
-    this.blurARGB(processedImageData.data, canvas, 1);
-    this.dilate(processedImageData.data, canvas);
+
+    this.blurARGB(processedImageData.data, canvas, 3);
     this.invertColors(processedImageData.data);
-    this.thresholdFilter(processedImageData.data, 0.4);
+    this.dilate(processedImageData.data, canvas);
+    this.thresholdFilter(processedImageData.data, 0.7);
+    this.invertColors(processedImageData.data);
 
     return processedImageData;
   }
